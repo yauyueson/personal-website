@@ -340,14 +340,15 @@ footer {
 }
 
 .project-description {
-    max-width: 700px;
-    margin-bottom: 60px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
 }
 
 .project-description p {
-    font-size: 15px;
-    line-height: 1.9;
-    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
@@ -387,7 +388,7 @@ footer {
     font-size: 16px;
     line-height: 1.8;
     color: var(--text);
-    font-weight: 400;
+    font-weight: 450;
     margin-bottom: 16px;
 }
 
