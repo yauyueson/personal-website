@@ -379,7 +379,7 @@ footer {
 
 /* Inline text blocks between images */
 .project-images .image-text {
-    max-width: 700px;
+    max-width: 100%;
     padding: 20px 0;
 }
 
