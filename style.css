@@ -5,6 +5,7 @@
     --border: #e5e5e5;
     --font-serif: 'Libre Baskerville', Georgia, serif;
     --font-sans: 'Archivo', -apple-system, sans-serif;
+    --font-logo: 'Bebas Neue', sans-serif;
 }
 
 * {
@@ -48,9 +49,9 @@ header {
 }
 
 .logo {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    letter-spacing: 0.02em;
+    font-family: var(--font-logo);
+    font-size: 22px;
+    letter-spacing: 0.06em;
 }
 
 nav {
