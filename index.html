@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,11 +86,10 @@
 
         /* Logo - Top */
         .logo {
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #fff;
+            display: block;
+            height: 120px;
+            width: auto;
+            filter: invert(1) brightness(2);
         }
 
         /* Enter Button - Center */
@@ -171,6 +171,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="frame">
         <!-- Background Slideshow -->
@@ -195,8 +196,8 @@
 
         <!-- Content -->
         <div class="content">
-            <div class="logo">YUCHEN QIU</div>
-            
+            <img src="images/mark-light.svg" class="logo" alt="YUCHEN QIU">
+
             <div class="enter-container">
                 <div class="tagline">Architecture • Design</div>
                 <a href="home.html" class="enter-btn">Enter</a>
@@ -223,9 +224,9 @@
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             indicators[currentSlide].classList.remove('active');
-            
+
             currentSlide = (currentSlide + 1) % slides.length;
-            
+
             slides[currentSlide].classList.add('active');
             indicators[currentSlide].classList.add('active');
         }
@@ -233,4 +234,5 @@
         setInterval(nextSlide, slideInterval);
     </script>
 </body>
+
 </html>

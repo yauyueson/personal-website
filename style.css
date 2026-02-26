@@ -41,18 +41,24 @@ header {
     z-index: 100;
     padding: 24px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo img {
+    height: 48px;
+    width: auto;
+    display: block;
 }
 
 nav {
@@ -68,7 +74,8 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     color: var(--text);
 }
 
@@ -429,7 +436,7 @@ footer {
         grid-template-columns: 1fr;
         gap: 48px;
     }
-    
+
     .about {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -444,13 +451,18 @@ footer {
     header {
         padding: 20px 24px;
     }
-    
+
     nav {
         gap: 20px;
     }
-    
-    .hero, .projects, .about, .contact,
-    .project-header, .project-content, .project-nav {
+
+    .hero,
+    .projects,
+    .about,
+    .contact,
+    .project-header,
+    .project-content,
+    .project-nav {
         padding-left: 24px;
         padding-right: 24px;
     }
