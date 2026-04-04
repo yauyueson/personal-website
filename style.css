@@ -1,5 +1,5 @@
 :root {
-    --bg: #fff;
+    --bg: #F5F1EB;
     --text: #1a1a1a;
     --text-muted: #888;
     --border: #e5e5e5;
@@ -43,7 +43,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(245, 241, 235, 0.95);
     backdrop-filter: blur(10px);
     will-change: transform;
 }
