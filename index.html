@@ -144,29 +144,6 @@
             opacity: 0;
         }
 
-        .enter-btn {
-            display: inline-block;
-            padding: 14px 48px;
-            font-family: 'Archivo', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: #1a1a1a;
-            text-decoration: none;
-            border: 1.5px solid rgba(26, 26, 26, 0.2);
-            background: transparent;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            opacity: 0;
-        }
-
-        .enter-btn:hover {
-            background: #1a1a1a;
-            color: #E8E0D4;
-            border-color: #1a1a1a;
-        }
-
         .indicators {
             position: absolute;
             bottom: 4vh;
@@ -249,7 +226,7 @@
         /* Reduced motion: show all content immediately */
         @media (prefers-reduced-motion: reduce) {
             .cover-name, .cover-tagline, .cover-studio, .cover-jian,
-            .enter-btn, .logo-frame, .indicators, .scroll-hint {
+            .logo-frame, .indicators, .scroll-hint {
                 opacity: 1 !important;
             }
             .slide:first-child { opacity: 1 !important; }
@@ -258,7 +235,7 @@
         /* Noscript fallback */
         noscript .cover-name, noscript .cover-tagline,
         noscript .cover-studio, noscript .cover-jian,
-        noscript .enter-btn, noscript .logo-frame {
+        noscript .logo-frame {
             opacity: 1 !important;
         }
     </style>
@@ -382,7 +359,6 @@
         <div class="cover-content">
             <span class="cover-name">Yuchen Qiu</span>
             <span class="cover-tagline">Architecture | Design</span>
-            <a href="home.html" class="enter-btn">Enter</a>
         </div>
 
         <div class="indicators">
@@ -402,7 +378,7 @@
     <noscript>
         <style>
             .cover-name, .cover-tagline, .cover-studio, .cover-jian,
-            .enter-btn, .logo-frame, .slide:first-child { opacity: 1 !important; }
+            .logo-frame, .slide:first-child { opacity: 1 !important; }
         </style>
     </noscript>
 
@@ -413,7 +389,7 @@
 
             if (typeof gsap === 'undefined') {
                 // GSAP failed to load — show content immediately
-                document.querySelectorAll('.cover-name, .cover-tagline, .cover-studio, .cover-jian, .enter-btn, .logo-frame, .slide').forEach(
+                document.querySelectorAll('.cover-name, .cover-tagline, .cover-studio, .cover-jian, .logo-frame, .slide').forEach(
                     el => el.style.opacity = '1'
                 );
                 return;
@@ -428,7 +404,6 @@
             const coverStudio = document.querySelector('.cover-studio');
             const coverJian = document.querySelector('.cover-jian');
             const coverTagline = document.querySelector('.cover-tagline');
-            const enterBtn = document.querySelector('.enter-btn');
             const transitionOverlay = document.querySelector('.transition-overlay');
 
             let currentSlide = 0;
@@ -491,7 +466,7 @@
 
             function playLoadAnimation() {
                 if (prefersReducedMotion) {
-                    gsap.set([coverName, coverStudio, coverJian, coverTagline, enterBtn], { opacity: 1 });
+                    gsap.set([coverName, coverStudio, coverJian, coverTagline], { opacity: 1 });
                     gsap.set(logoFrame, { scale: 1, opacity: 1 });
                     startSlideshow();
                     return;
@@ -503,16 +478,13 @@
                 gsap.set(coverJian, { y: -6, opacity: 0 });
                 gsap.set(coverName, { y: 12, opacity: 0 });
                 gsap.set(coverTagline, { y: 8, opacity: 0 });
-                gsap.set(enterBtn, { y: 8, opacity: 0 });
-
                 const tl = gsap.timeline({ onComplete: () => startSlideshow() });
                 tl.to(coverStudio, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
                   .to(coverJian, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.3')
                   .to(logoFrame, { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.2)' }, '-=0.2')
                   .to(slides[0], { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
                   .to(coverName, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-                  .to(coverTagline, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.25')
-                  .to(enterBtn, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
+                  .to(coverTagline, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.25');
             }
 
             function initMouseParallax() {
@@ -537,7 +509,7 @@
 
             /* ── Shared exit transition ── */
             let isExiting = false;
-            const targetHref = enterBtn.getAttribute('href');
+            const targetHref = 'home.html';
 
             function playExitAnimation() {
                 if (isExiting) return;
@@ -552,7 +524,7 @@
                 const scrollHint = document.querySelector('.scroll-hint');
                 const tl = gsap.timeline({ onComplete: () => { window.location.href = targetHref; } });
 
-                tl.to([coverName, coverStudio, coverJian, coverTagline, enterBtn, '.indicators', scrollHint], {
+                tl.to([coverName, coverStudio, coverJian, coverTagline, '.indicators', scrollHint], {
                     opacity: 0, y: -15, duration: 0.35, ease: 'power2.in', stagger: 0.04
                 })
                 .to(logoFrame, {
@@ -564,11 +536,6 @@
             }
 
             /* Enter button click */
-            enterBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                playExitAnimation();
-            });
-
             /* ── Scroll / swipe down to enter ── */
             let wheelAccum = 0;
             const wheelThreshold = 80;
