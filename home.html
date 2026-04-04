@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="images/mark-light.svg">
     <title>Yuchen | Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,7 @@
 
     <section class="projects" id="projects">
         <div class="project-grid">
-            <a href="projects/spira-silva.html" class="project-item">
+            <a href="projects/spira-silva.html" class="project-item" data-reveal>
                 <div class="project-image">
                     <img src="images/spira-silva.jpg" alt="Spira Silva">
                 </div>
@@ -44,7 +45,7 @@
                 </div>
             </a>
 
-            <a href="projects/the-ripple.html" class="project-item">
+            <a href="projects/the-ripple.html" class="project-item" data-reveal>
                 <div class="project-image">
                     <img src="images/the-ripple.jpg" alt="The Ripple">
                 </div>
@@ -59,9 +60,9 @@
                 </div>
             </a>
 
-            <a href="projects/the-loop.html" class="project-item">
+            <a href="projects/the-loop.html" class="project-item" data-reveal>
                 <div class="project-image">
-                    <img src="images/the-loop.jpg" alt="The Loop">
+                    <img src="images/the-loop.jpg" alt="The Loop" loading="lazy">
                 </div>
                 <div class="project-info">
                     <div class="project-text">
@@ -74,9 +75,24 @@
                 </div>
             </a>
 
-            <a href="projects/motion.html" class="project-item">
+            <a href="projects/school-of-methodology.html" class="project-item" data-reveal>
                 <div class="project-image">
-                    <img src="images/motion.jpg" alt="Motion">
+                    <img src="images/school-of-methodology.jpg" alt="The Weave" loading="lazy">
+                </div>
+                <div class="project-info">
+                    <div class="project-text">
+                        <h3>The Weave</h3>
+                        <p>School · Adaptive Reuse</p>
+                    </div>
+                    <div class="project-meta">
+                        <p class="project-year">2020</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="projects/motion.html" class="project-item" data-reveal>
+                <div class="project-image">
+                    <img src="images/motion.jpg" alt="Motion" loading="lazy">
                 </div>
                 <div class="project-info">
                     <div class="project-text">
@@ -90,9 +106,9 @@
                 </div>
             </a>
 
-            <a href="projects/the-third-space.html" class="project-item">
+            <a href="projects/the-third-space.html" class="project-item" data-reveal>
                 <div class="project-image">
-                    <img src="images/the-third-space.jpg" alt="The Third Space">
+                    <img src="images/the-third-space.jpg" alt="The Third Space" loading="lazy">
                 </div>
                 <div class="project-info">
                     <div class="project-text">
@@ -105,9 +121,9 @@
                 </div>
             </a>
 
-            <a href="projects/intertwine.html" class="project-item">
+            <a href="projects/intertwine.html" class="project-item" data-reveal>
                 <div class="project-image">
-                    <img src="images/intertwine.jpg" alt="Intertwine">
+                    <img src="images/intertwine.jpg" alt="Intertwine" loading="lazy">
                 </div>
                 <div class="project-info">
                     <div class="project-text">
@@ -120,26 +136,11 @@
                     </div>
                 </div>
             </a>
-
-            <a href="projects/school-of-methodology.html" class="project-item">
-                <div class="project-image">
-                    <img src="images/school-of-methodology.jpg" alt="School of Methodology">
-                </div>
-                <div class="project-info">
-                    <div class="project-text">
-                        <h3>School of Methodology</h3>
-                        <p>School · Adaptive Reuse</p>
-                    </div>
-                    <div class="project-meta">
-                        <p class="project-year">2020</p>
-                    </div>
-                </div>
-            </a>
         </div>
     </section>
 
     <section class="about" id="about">
-        <div class="about-left">
+        <div class="about-left" data-reveal>
             <h2>About</h2>
             <p>The studio is founded by New York City-based architect Yuchen Qiu, with work spanning institutional,
                 residential, senior living, and healthcare projects—from single-family residences to developments
@@ -153,7 +154,7 @@
             <p>Project work featured in ArchDaily, Dezeen, New York Times, Wall Street Journal, and Architectural
                 Record.</p>
         </div>
-        <div class="about-right">
+        <div class="about-right" data-reveal>
             <div class="expertise-item">
                 <p class="expertise-label">Education</p>
                 <p class="expertise-value">M.Arch, Columbia GSAPP</p>
@@ -176,7 +177,7 @@
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" data-reveal>
         <h2>Get in touch</h2>
         <a href="mailto:yauyueson@outlook.com" class="contact-email">yauyueson@outlook.com</a>
     </section>
@@ -196,6 +197,10 @@
             });
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="animations.js"></script>
 </body>
 
 </html>

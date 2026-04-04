@@ -5,233 +5,554 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuchen Qiu | Architect</title>
+    <link rel="icon" type="image/svg+xml" href="images/mark-light.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="images/cover/spira-silva.jpg" as="image">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" as="script">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Archivo', -apple-system, sans-serif;
-            background: #fff;
+            background: #E8E0D4;
             color: #1a1a1a;
             overflow: hidden;
             height: 100vh;
-            padding: 24px;
+            height: 100dvh;
         }
 
-        /* Main Frame */
-        .frame {
+        .cover {
             position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            background: #fff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: #E8E0D4;
         }
 
-        /* Background Slideshow - height fixed, width auto */
-        .slideshow {
+        .logo-frame {
             position: relative;
-            height: 100%;
-            z-index: 0;
+            width: min(28vw, 260px);
+            aspect-ratio: 38 / 80;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .logo-emboss {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cover-slideshow {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
         }
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 100%;
+            inset: 0;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            will-change: opacity;
+            clip-path: url(#logo-clip-inset);
+            -webkit-clip-path: url(#logo-clip-inset);
         }
 
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 1; }
 
         .slide img {
+            width: 100%;
             height: 100%;
-            width: auto;
+            object-fit: cover;
             display: block;
         }
 
-        /* Dark overlay - follows image size */
-        .overlay {
+        .slide-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-        }
-
-        /* Content - positioned over image */
-        .content {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px;
+            background: rgba(0, 0, 0, 0.04);
             pointer-events: none;
         }
 
-        /* Logo - Top */
-        .logo {
-            display: block;
-            height: 120px;
-            width: auto;
-            filter: invert(1) brightness(2);
+        .svg-defs {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
         }
 
-        /* Enter Button - Center */
-        .enter-container {
+        .cover-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            pointer-events: auto;
+            margin-top: 4vh;
+            z-index: 10;
         }
 
-        .tagline {
-            font-size: 10px;
+        .cover-name {
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            opacity: 0;
+        }
+
+        .cover-tagline {
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(26, 26, 26, 0.3);
+            margin-bottom: 5px;
+            opacity: 0;
+        }
+
+        .cover-studio {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin-bottom: 28px;
+            opacity: 0;
         }
 
         .enter-btn {
             display: inline-block;
-            padding: 18px 56px;
+            padding: 14px 48px;
             font-family: 'Archivo', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: #fff;
+            color: #1a1a1a;
             text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 1.5px solid rgba(26, 26, 26, 0.2);
             background: transparent;
             transition: all 0.4s ease;
             cursor: pointer;
+            opacity: 0;
         }
 
         .enter-btn:hover {
-            background: #fff;
-            color: #0a0a0a;
-            border-color: #fff;
+            background: #1a1a1a;
+            color: #E8E0D4;
+            border-color: #1a1a1a;
         }
 
-        /* Spacer for bottom */
-        .bottom-spacer {
-            height: 14px;
-        }
-
-        /* Slide indicators */
         .indicators {
             position: absolute;
-            bottom: 40px;
+            bottom: 4vh;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
+            z-index: 10;
             display: flex;
-            gap: 8px;
+            gap: 12px;
+        }
+
+        /* Scroll hint — bouncing chevron */
+        .scroll-hint {
+            position: absolute;
+            bottom: 1.5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .scroll-hint span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-right: 1.5px solid rgba(26, 26, 26, 0.25);
+            border-bottom: 1.5px solid rgba(26, 26, 26, 0.25);
+            transform: rotate(45deg);
         }
 
         .indicator {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: background 0.3s ease;
+            width: 24px;
+            height: 2px;
+            background: rgba(26, 26, 26, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .indicator.active {
-            background: rgba(255, 255, 255, 0.9);
+        .indicator-fill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 0%;
+            background: rgba(26, 26, 26, 0.45);
         }
 
-        /* Responsive */
+        .indicator.active .indicator-fill { width: 100%; }
+
+        .transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
-            body {
-                padding: 16px;
-            }
+            .logo-frame { width: min(45vw, 240px); }
+            .cover-content { margin-top: 3vh; }
+        }
 
-            .content {
-                padding: 24px;
-            }
+        @media (max-width: 480px) {
+            .logo-frame { width: min(50vw, 220px); }
         }
     </style>
 </head>
 
 <body>
-    <div class="frame">
-        <!-- Background Slideshow -->
-        <div class="slideshow">
-            <div class="slide active">
-                <img src="images/cover/spira-silva.jpg" alt="Spira Silva">
-                <div class="overlay"></div>
-            </div>
-            <div class="slide">
-                <img src="images/cover/ripple.jpg" alt="The Ripple">
-                <div class="overlay"></div>
-            </div>
-            <div class="slide">
-                <img src="images/cover/loop.jpg" alt="The Loop">
-                <div class="overlay"></div>
-            </div>
-            <div class="slide">
-                <img src="images/cover/school.png" alt="School of Methodology">
-                <div class="overlay"></div>
+    <div class="cover">
+        <svg class="svg-defs" aria-hidden="true">
+            <defs>
+                <!--
+                    Image clip-path — inset 0.8 units from each edge along its normal.
+                    Left inset:  (0.8,1.35)(10.2,6.48)(10.2,79.2)(0.8,79.2)
+                    Right inset: (27.8,24.47)(37.2,19.35)(37.2,79.2)(27.8,79.2)
+                    Normalized: x/38, y/80
+                -->
+                <clipPath id="logo-clip-inset" clipPathUnits="objectBoundingBox">
+                    <polygon points="0.0211,0.0169 0.2684,0.081 0.2684,0.99 0.0211,0.99" />
+                    <polygon points="0.7316,0.3059 0.9789,0.2419 0.9789,0.99 0.7316,0.99" />
+                </clipPath>
+
+                <linearGradient id="surface-light" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#EDE6DA" />
+                    <stop offset="100%" stop-color="#E6DED2" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="logo-frame">
+            <!--
+                Multi-layer emboss effect (like mersi-architecture.com).
+                3 levels of shadow + highlight offsets per shape create
+                stepped depth. Light source: top-left.
+                viewBox 0 0 38 80 matches mark-light.svg.
+            -->
+            <svg class="logo-emboss" viewBox="0 0 38 80" preserveAspectRatio="none" aria-hidden="true">
+                <!--
+                    Emboss: per-edge borders with directional lighting.
+                    Outer border = shape outset 1 unit along each edge normal.
+                    Inner border = at original shape position.
+                    Light source: top-left.
+                      Light edges (top, left):  rgba(255,255,255, 0.25)
+                      Shadow edges (right, bottom): rgba(0,0,0, 0.08)
+
+                    LEFT  original: (0,0)(11,6)(11,80)(0,80)
+                    LEFT  outset:   (-1,-1.69)(12,5.41)(12,81)(-1,81)
+
+                    RIGHT original: (27,24)(38,18)(38,80)(27,80)
+                    RIGHT outset:   (26,23.41)(39,16.32)(39,81)(26,81)
+                -->
+
+                <!-- ═══ LEFT BAR (0,0)(11,6)(11,80)(0,80) ═══ -->
+
+                <!-- Depth shadow -->
+                <polygon points="0.4,0.4 11.4,6.4 11.4,80.4 0.4,80.4"
+                         fill="rgba(0,0,0,0.03)" />
+
+                <!-- Surface fill -->
+                <polygon points="0,0 11,6 11,80 0,80"
+                         fill="url(#surface-light)" />
+
+                <!-- Border — light edges (top, left) -->
+                <line x1="0" y1="0" x2="11" y2="6"
+                      stroke="rgba(255,255,255,0.55)" stroke-width="0.5"/>
+                <line x1="0" y1="80" x2="0" y2="0"
+                      stroke="rgba(255,255,255,0.50)" stroke-width="0.5"/>
+                <!-- Border — shadow edges (right, bottom) -->
+                <line x1="11" y1="6" x2="11" y2="80"
+                      stroke="rgba(0,0,0,0.22)" stroke-width="0.5"/>
+                <line x1="11" y1="80" x2="0" y2="80"
+                      stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+
+
+                <!-- ═══ RIGHT BAR (27,24)(38,18)(38,80)(27,80) ═══ -->
+
+                <!-- Depth shadow -->
+                <polygon points="27.4,24.4 38.4,18.4 38.4,80.4 27.4,80.4"
+                         fill="rgba(0,0,0,0.03)" />
+
+                <!-- Surface fill -->
+                <polygon points="27,24 38,18 38,80 27,80"
+                         fill="url(#surface-light)" />
+
+                <!-- Border — light edges (top, left) -->
+                <line x1="27" y1="24" x2="38" y2="18"
+                      stroke="rgba(255,255,255,0.55)" stroke-width="0.5"/>
+                <line x1="27" y1="80" x2="27" y2="24"
+                      stroke="rgba(255,255,255,0.50)" stroke-width="0.5"/>
+                <!-- Border — shadow edges (right, bottom) -->
+                <line x1="38" y1="18" x2="38" y2="80"
+                      stroke="rgba(0,0,0,0.22)" stroke-width="0.5"/>
+                <line x1="38" y1="80" x2="27" y2="80"
+                      stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+            </svg>
+
+            <!-- Slideshow — clipped to inset logo shape -->
+            <div class="cover-slideshow">
+                <div class="slide active">
+                    <img src="images/cover/spira-silva.jpg" alt="Spira Silva">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="slide">
+                    <img src="images/cover/ripple.jpg" alt="The Ripple">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="slide">
+                    <img src="images/cover/loop.jpg" alt="The Loop">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="slide">
+                    <img src="images/cover/school.png" alt="School of Methodology">
+                    <div class="slide-overlay"></div>
+                </div>
             </div>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <img src="images/mark-light.svg" class="logo" alt="YUCHEN QIU">
-
-            <div class="enter-container">
-                <div class="tagline">Architecture • Design</div>
-                <a href="home.html" class="enter-btn">Enter</a>
-            </div>
-
-            <div class="bottom-spacer"></div>
+        <div class="cover-content">
+            <span class="cover-name">Yuchen Qiu</span>
+            <span class="cover-tagline">Architecture &middot; Design</span>
+            <span class="cover-studio">Studio Liminal</span>
+            <a href="home.html" class="enter-btn">Enter</a>
         </div>
 
-        <!-- Slide Indicators -->
         <div class="indicators">
-            <div class="indicator active"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
+            <div class="indicator active"><div class="indicator-fill"></div></div>
+            <div class="indicator"><div class="indicator-fill"></div></div>
+            <div class="indicator"><div class="indicator-fill"></div></div>
+            <div class="indicator"><div class="indicator-fill"></div></div>
         </div>
+
+        <div class="scroll-hint">
+            <span></span>
+        </div>
+
+        <div class="transition-overlay"></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script>
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
-        let currentSlide = 0;
-        const slideInterval = 4000;
+        (function () {
+            'use strict';
 
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            indicators[currentSlide].classList.remove('active');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const indicatorFills = document.querySelectorAll('.indicator-fill');
+            const logoFrame = document.querySelector('.logo-frame');
+            const coverName = document.querySelector('.cover-name');
+            const coverStudio = document.querySelector('.cover-studio');
+            const coverTagline = document.querySelector('.cover-tagline');
+            const enterBtn = document.querySelector('.enter-btn');
+            const transitionOverlay = document.querySelector('.transition-overlay');
 
-            currentSlide = (currentSlide + 1) % slides.length;
+            let currentSlide = 0;
+            const slideDuration = 5;
+            let slideTimer = null;
+            let kenBurnsTween = null;
 
-            slides[currentSlide].classList.add('active');
-            indicators[currentSlide].classList.add('active');
-        }
+            function startKenBurns(slideEl) {
+                const img = slideEl.querySelector('img');
+                if (!img) return;
+                const dirs = [
+                    { scale: 1.06, xPercent: 1.5, yPercent: -1 },
+                    { scale: 1.05, xPercent: -1.5, yPercent: 1 },
+                    { scale: 1.06, xPercent: 1, yPercent: 1.5 },
+                    { scale: 1.05, xPercent: -1, yPercent: -1.5 }
+                ];
+                gsap.set(img, { scale: 1, xPercent: 0, yPercent: 0 });
+                kenBurnsTween = gsap.to(img, {
+                    ...dirs[currentSlide % dirs.length],
+                    duration: slideDuration + 1,
+                    ease: 'none'
+                });
+            }
 
-        setInterval(nextSlide, slideInterval);
+            function goToSlide(index) {
+                if (index === currentSlide) return;
+                gsap.to(slides[currentSlide], { opacity: 0, duration: 1.2, ease: 'power2.inOut' });
+                gsap.to(indicatorFills[currentSlide], { width: '0%', duration: 0.3 });
+                if (kenBurnsTween) kenBurnsTween.kill();
+                currentSlide = index;
+                gsap.to(slides[currentSlide], { opacity: 1, duration: 1.2, ease: 'power2.inOut' });
+                startKenBurns(slides[currentSlide]);
+                gsap.fromTo(indicatorFills[currentSlide],
+                    { width: '0%' },
+                    { width: '100%', duration: slideDuration, ease: 'none' }
+                );
+            }
+
+            function nextSlide() {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+
+            function startSlideshow() {
+                startKenBurns(slides[0]);
+                gsap.fromTo(indicatorFills[0],
+                    { width: '0%' },
+                    { width: '100%', duration: slideDuration, ease: 'none' }
+                );
+                slideTimer = setInterval(nextSlide, slideDuration * 1000);
+            }
+
+            indicators.forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    if (i === currentSlide) return;
+                    clearInterval(slideTimer);
+                    goToSlide(i);
+                    slideTimer = setInterval(nextSlide, slideDuration * 1000);
+                });
+            });
+
+            function playLoadAnimation() {
+                if (prefersReducedMotion) {
+                    gsap.set([coverName, coverStudio, coverTagline, enterBtn], { opacity: 1 });
+                    gsap.set(logoFrame, { scale: 1, opacity: 1 });
+                    startSlideshow();
+                    return;
+                }
+
+                gsap.set(logoFrame, { scale: 0.92, opacity: 0 });
+                gsap.set(slides[0], { opacity: 0 });
+                gsap.set(coverName, { y: 12, opacity: 0 });
+                gsap.set(coverTagline, { y: 8, opacity: 0 });
+                gsap.set(coverStudio, { y: 10, opacity: 0 });
+                gsap.set(enterBtn, { y: 8, opacity: 0 });
+
+                const tl = gsap.timeline({ onComplete: () => startSlideshow() });
+                tl.to(logoFrame, { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.2)' })
+                  .to(slides[0], { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                  .to(coverName, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+                  .to(coverTagline, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.25')
+                  .to(coverStudio, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.25')
+                  .to(enterBtn, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
+            }
+
+            function initMouseParallax() {
+                if (prefersReducedMotion) return;
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+                let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+                const imgs = document.querySelectorAll('.slide img');
+
+                document.addEventListener('mousemove', (e) => {
+                    targetX = (e.clientX / window.innerWidth - 0.5) * 5;
+                    targetY = (e.clientY / window.innerHeight - 0.5) * 3;
+                });
+                gsap.ticker.add(() => {
+                    currentX += (targetX - currentX) * 0.06;
+                    currentY += (targetY - currentY) * 0.06;
+                    imgs.forEach(img => {
+                        gsap.set(img, { x: currentX, y: currentY });
+                    });
+                });
+            }
+
+            /* ── Shared exit transition ── */
+            let isExiting = false;
+            const targetHref = enterBtn.getAttribute('href');
+
+            function playExitAnimation() {
+                if (isExiting) return;
+                isExiting = true;
+                clearInterval(slideTimer);
+
+                if (prefersReducedMotion) {
+                    window.location.href = targetHref;
+                    return;
+                }
+
+                const scrollHint = document.querySelector('.scroll-hint');
+                const tl = gsap.timeline({ onComplete: () => { window.location.href = targetHref; } });
+
+                tl.to([coverName, coverStudio, coverTagline, enterBtn, '.indicators', scrollHint], {
+                    opacity: 0, y: -15, duration: 0.35, ease: 'power2.in', stagger: 0.04
+                })
+                .to(logoFrame, {
+                    scale: 4, y: '-20vh', duration: 1.1, ease: 'power3.in'
+                }, '-=0.15')
+                .to(transitionOverlay, {
+                    opacity: 1, duration: 0.45, ease: 'power2.in'
+                }, '-=0.45');
+            }
+
+            /* Enter button click */
+            enterBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                playExitAnimation();
+            });
+
+            /* ── Scroll / swipe down to enter ── */
+            let wheelAccum = 0;
+            const wheelThreshold = 80;
+
+            document.addEventListener('wheel', function (e) {
+                if (isExiting) return;
+                if (e.deltaY > 0) {
+                    wheelAccum += e.deltaY;
+                    if (wheelAccum >= wheelThreshold) {
+                        playExitAnimation();
+                    }
+                } else {
+                    wheelAccum = 0;
+                }
+            }, { passive: true });
+
+            /* Touch swipe down */
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function (e) {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            document.addEventListener('touchend', function (e) {
+                if (isExiting) return;
+                const deltaY = touchStartY - e.changedTouches[0].clientY;
+                if (deltaY > 60) {
+                    playExitAnimation();
+                }
+            }, { passive: true });
+
+            /* ── Scroll hint animation ── */
+            function initScrollHint() {
+                const hint = document.querySelector('.scroll-hint');
+                if (!hint || prefersReducedMotion) return;
+
+                gsap.to(hint, {
+                    opacity: 1, duration: 0.6, delay: 2.5, ease: 'power2.out'
+                });
+
+                gsap.to(hint, {
+                    y: 4, duration: 1.2, ease: 'sine.inOut',
+                    repeat: -1, yoyo: true, delay: 2.5
+                });
+            }
+
+            playLoadAnimation();
+            initMouseParallax();
+            initScrollHint();
+        })();
     </script>
 </body>
 
