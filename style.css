@@ -484,7 +484,17 @@ footer {
 
 @media (max-width: 768px) {
     header {
-        padding: 20px 24px;
+        padding: 20px max(24px, env(safe-area-inset-right)) 20px max(24px, env(safe-area-inset-left));
+        justify-content: space-between;
+    }
+
+    .logo {
+        position: static;
+        transform: none;
+    }
+
+    .logo img {
+        height: 36px;
     }
 
     nav {
