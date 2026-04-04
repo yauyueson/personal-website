@@ -207,8 +207,15 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            padding: 12px 0;
-            background-clip: content-box;
+        }
+
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            bottom: -12px;
+            left: -4px;
+            right: -4px;
         }
 
         .indicator-fill {
