@@ -112,6 +112,7 @@ nav a.active {
 .project-item {
     cursor: pointer;
     display: block;
+    text-decoration: none;
 }
 
 .project-image {
@@ -120,17 +121,33 @@ nav a.active {
     background: #f5f5f5;
     margin-bottom: 16px;
     will-change: transform;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.5s ease;
 }
 
 .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-item:hover .project-image {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08),
+                0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .project-item:hover .project-image img {
-    transform: scale(1.03);
+    transform: scale(1.04);
+}
+
+.project-info {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-item:hover .project-info {
+    transform: translateX(4px);
 }
 
 .project-info {
