@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" type="image/svg+xml" href="../images/mark-light.svg">
+    <title>Energy-Informed Design Decisions | Yuchen Qiu</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="How to integrate energy analysis into each phase of design — what to ask, when to ask it, and what to do with the answers. Adapted from an internal practice guidance document.">
+    <meta property="og:title" content="Energy-Informed Design Decisions | Yuchen Qiu">
+    <meta property="og:description" content="How to integrate energy analysis into each phase of design — what to ask, when to ask it, and what to do with the answers. Adapted from an internal practice guidance document.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <a href="../home.html" class="logo"><img src="../images/mark-light.svg" alt="Yuchen Qiu"></a>
+        <nav>
+            <a href="../home.html">Projects</a>
+            <a href="../research.html" class="active">Research</a>
+            <a href="../home.html#about">About</a>
+            <a href="../home.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section class="article-header" data-reveal>
+                <a href="../research.html" class="back-link">← Back to Research</a>
+                <div class="article-meta">
+                    <span>2026.04.25</span>
+                    <span>12 min read</span>
+                    <span>Computational Design</span>
+                    <span>Building Performance</span>
+                    <span>Sustainability</span>
+                </div>
+                <h1>Energy-Informed Design Decisions</h1>
+                <p class="article-subtitle">A practitioner's guide to phase-based energy modeling.</p>
+                <p class="article-provenance">Adapted from an internal Perkins Eastman NYC Office guidance document I originally co-authored (May 2025). This public version expands the original with research context and a closing note on where I think the practice is heading.</p>
+            </section>
+
+            <nav class="article-toc" data-reveal aria-label="Table of contents">
+                <p class="article-toc-label">Contents</p>
+                <ol>
+                    <li><a href="#phase-based-workflow">The phase-based workflow</a></li>
+                    <li><a href="#understanding-baselines">Understanding baselines</a></li>
+                    <li><a href="#eui-benchmarks">EUI benchmarks</a></li>
+                    <li><a href="#tool-setup">Tool setup</a></li>
+                    <li><a href="#interpreting-results">Interpreting results for design decisions</a></li>
+                    <li><a href="#wwr-optimization">Window-wall ratio optimization</a></li>
+                    <li><a href="#in-house-vs-mep">When to model in-house vs. engage an MEP engineer</a></li>
+                    <li><a href="#bim-authoring">Working from BIM authoring tools</a></li>
+                    <li><a href="#quality-control">Quality control checklist</a></li>
+                    <li><a href="#common-mistakes">Common mistakes to avoid</a></li>
+                    <li><a href="#closing-reflection">A closing reflection: where this is going</a></li>
+                    <li><a href="#acknowledgments">Acknowledgments</a></li>
+                </ol>
+            </nav>
+
+            <div class="article-body">
+                <section data-reveal>
+                    <p>Energy modeling helps answer design questions with data — not just comply with codes. The trick is asking the right question at the right moment, while changes are still cheap. By the end of schematic design, decisions about massing, orientation, and window-wall ratio have already locked in 70–80% of a building's energy performance. Everything after that is refinement around a fixed envelope.</p>
+
+                    <p>There's empirical backing for taking early-phase feedback seriously. The MOOSAS research project (Tsinghua, 2020+) ran controlled experiments where designers had access to one-click EUI estimates while massing. Final designs averaged 10–11% lower EUI than the control group. The estimates weren't precise — they were a fast machine-learning approximator over simulation data. What mattered was that the feedback was <em>present</em> during the act of designing, not requested as a separate analysis run after the fact.</p>
+
+                    <p>That's the principle this guide is built around: <strong>in early design, speed and presence beat precision.</strong> A rough number that's always visible changes more decisions than an accurate number nobody runs. The sections below organize that principle into a phase-by-phase workflow, the tools and baselines that support it, and the modeling habits that keep the work portable across the project.</p>
+                </section>
+
+                <section id="phase-based-workflow" data-reveal>
+                    <h2>The phase-based workflow</h2>
+                    <p>Use this as a frame for asking the right questions at the right time.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Phase</th>
+                                    <th scope="col">Design questions</th>
+                                    <th scope="col">Tool &amp; method</th>
+                                    <th scope="col">Key outputs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Pre-Design</strong></td>
+                                    <td>Is this climate heating- or cooling-dominated? Which orientations minimize solar heat gain? What passive strategies apply here? What are typical EUI targets?</td>
+                                    <td>Climate analysis. Address-only entry in COVE.TOOL — Climate Tab, or equivalent.</td>
+                                    <td>Climate zone classification; optimal orientation range; radiation by sky segment; passive strategy recommendations; target EUI benchmarks.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Schematic Design</strong></td>
+                                    <td>Which massing option performs better? What is the optimal WWR? Is net-zero feasible with the available roof area? How does shape affect loads?</td>
+                                    <td>Shoebox model in-house. Upload simplified massing — compare options.</td>
+                                    <td>Comparative EUI by option; WWR optimization curves; solar exposure maps; PV potential estimate.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Design Development</strong></td>
+                                    <td>Better glazing or more wall insulation? What is driving the largest loads? Where should shading be prioritized? Which system type is most efficient?</td>
+                                    <td>Whole-building model. In-house full COVE.TOOL with Revit export, or out-of-house with MEP engineer.</td>
+                                    <td>EUI breakdown by end use; load profiles by orientation; envelope optimization results; system sizing guidance.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CDs / VE</strong></td>
+                                    <td>What is the energy impact of VE options? Are we meeting code/2030 targets? Payback on upgrades? Final compliance documentation?</td>
+                                    <td>Update existing model. Test VE alternatives against the established baseline. Coordinate with MEP.</td>
+                                    <td>VE impact comparison; code compliance verification; energy cost estimates; 2030 Challenge reporting.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="understanding-baselines" data-reveal>
+                    <h2>Understanding baselines: what are you comparing against?</h2>
+                    <p>To know where you stand, you need something to compare against. Establish baseline energy performance early.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Baseline type</th>
+                                    <th scope="col">What it is</th>
+                                    <th scope="col">Tool / source</th>
+                                    <th scope="col">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Code minimum</strong></td>
+                                    <td>Minimum required performance, typically ASHRAE 90.1.</td>
+                                    <td>DOE Building Energy Codes Program; local authority.</td>
+                                    <td>Two compliance paths — prescriptive or performance. The performance path is the one that actually maps to energy use.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2030 Challenge</strong></td>
+                                    <td>80% reduction from 2003 CBECS median. Current AIA target.</td>
+                                    <td><a href="https://zerotool.org" target="_blank" rel="noopener">Zero Tool</a></td>
+                                    <td>Enter location, building type, and SF to get a baseline EUI. Uses 2003 CBECS data.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ENERGY STAR</strong></td>
+                                    <td>Comparison to existing building stock (2012 CBECS).</td>
+                                    <td>EPA Target Finder.</td>
+                                    <td>Different baseline than 2030 (2012 vs. 2003). Use for ENERGY STAR certification goals.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>LEED / green cert</strong></td>
+                                    <td>Prerequisites based on ASHRAE 90.1, or a percentage better.</td>
+                                    <td>LEED Reference Guide.</td>
+                                    <td>May require two models if the code version differs from the LEED-referenced version.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="eui-benchmarks" data-reveal>
+                    <h2>EUI benchmarks: know your targets</h2>
+                    <p>Approximate ranges by building type, in kBtu/sf/yr. Use <a href="https://zerotool.org" target="_blank" rel="noopener">zerotool.org</a> for project-specific targets that account for climate zone.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Building type</th>
+                                    <th scope="col">Code baseline (ASHRAE 90.1)</th>
+                                    <th scope="col">2030 Challenge target</th>
+                                    <th scope="col">High performance (top 25%)</th>
+                                    <th scope="col">Net-zero ready</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Office</td><td>65–85</td><td>32–42</td><td>25–35</td><td>&lt; 25</td></tr>
+                                <tr><td>K-12 school</td><td>50–70</td><td>25–35</td><td>20–28</td><td>&lt; 20</td></tr>
+                                <tr><td>Higher education</td><td>80–120</td><td>40–60</td><td>35–50</td><td>&lt; 35</td></tr>
+                                <tr><td>Multifamily</td><td>45–65</td><td>22–32</td><td>18–25</td><td>&lt; 18</td></tr>
+                                <tr><td>Healthcare</td><td>150–250</td><td>75–125</td><td>60–100</td><td>&lt; 60</td></tr>
+                                <tr><td>Laboratory</td><td>200–350</td><td>100–175</td><td>80–140</td><td>&lt; 80</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tool-setup" data-reveal>
+                    <h2>Tool setup: a quick-start sequence</h2>
+                    <p>The example below assumes COVE.TOOL because it's the most common early-stage tool in this workflow, but the sequence translates to most reduced-order modeling (ROM) platforms.</p>
+
+                    <ol>
+                        <li><strong>Start a new project</strong> — enter address, select building use type, select local energy code.</li>
+                        <li><strong>Export geometry</strong> — from Revit, SketchUp, or Rhino using the COVE.TOOL plugin.</li>
+                        <li><strong>Geometry tab</strong> — set to 3D view, verify surfaces are correctly tagged (exterior vs. shading vs. interior).</li>
+                        <li><strong>3D Analysis tab</strong> — run radiation analysis first.</li>
+                        <li><strong>Baseline tab</strong> — verify envelope settings match code minimums.</li>
+                        <li><strong>Create options</strong> — copy the baseline, rename descriptively, and test variations one at a time.</li>
+                    </ol>
+
+                    <h3>Key settings to verify</h3>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Envelope (verify vs. code)</th>
+                                    <th scope="col">Systems (coordinate w/ MEP)</th>
+                                    <th scope="col">Schedules &amp; loads</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Roof / wall R-values</td><td>HVAC system type</td><td>Occupancy density</td></tr>
+                                <tr><td>Glazing U-value &amp; SHGC</td><td>Heating / cooling efficiency</td><td>Ventilation rates</td></tr>
+                                <tr><td>WWR by orientation</td><td>Heat recovery effectiveness</td><td>LPD &amp; equipment (W/sf)</td></tr>
+                                <tr><td>Slab insulation</td><td>Fan power (W/cfm)</td><td>Infiltration rate (cfm/sf)</td></tr>
+                                <tr><td>Air barrier continuity</td><td>DHW system type</td><td>Operating schedules</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="interpreting-results" data-reveal>
+                    <h2>Interpreting results for design decisions</h2>
+                    <p>Focus on <strong>comparative analysis</strong> — the absolute number is less useful than the delta between two options. Use results to identify the largest opportunities for improvement, not to make precise predictions.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">If high…</th>
+                                    <th scope="col">Design responses to consider</th>
+                                    <th scope="col">Variables to test</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Cooling</td><td>Reduce solar heat gain; add shading; optimize glazing.</td><td>Lower SHGC; reduced WWR on E/W; external shading; lighter roof color.</td></tr>
+                                <tr><td>Heating</td><td>Improve envelope; reduce infiltration; add heat recovery.</td><td>Better R-values; improved U-value; ERV; tighter air barrier.</td></tr>
+                                <tr><td>Lighting</td><td>Maximize daylighting; efficient fixtures and controls.</td><td>Daylighting strategies; lower LPD; daylight / occupancy sensors.</td></tr>
+                                <tr><td>Fans / pumps</td><td>Reduce system pressure; right-size equipment.</td><td>System type; distribution efficiency; VAV vs. CAV.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>It's also worth tracking a few <strong>floor plate geometry metrics</strong> alongside EUI when you compare options — depth from core to skin, perimeter-to-area ratio, exterior surface area by orientation. These are intuitions designers already carry; making them explicit makes them shareable with consultants and lets you tie a load number back to a geometric cause.</p>
+                </section>
+
+                <section id="wwr-optimization" data-reveal>
+                    <h2>Window-wall ratio optimization</h2>
+                    <p>The optimal ratio depends on climate, orientation, and glazing performance. Use the table below as a starting point, not a target.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Orientation</th>
+                                    <th scope="col">Heating-dominated (Zones 5–8)</th>
+                                    <th scope="col">Mixed climate (Zones 3–4)</th>
+                                    <th scope="col">Cooling-dominated (Zones 1–2)</th>
+                                    <th scope="col">Key considerations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>South</td><td>40–60%</td><td>30–50%</td><td>20–35%</td><td>Easiest to shade; good daylight; winter solar gain beneficial in cold climates.</td></tr>
+                                <tr><td>North</td><td>20–35%</td><td>25–40%</td><td>30–45%</td><td>Consistent diffuse light; no direct sun; heat-loss concern in cold climates.</td></tr>
+                                <tr><td>East</td><td>20–35%</td><td>20–30%</td><td>15–25%</td><td>Hard to shade low morning sun; consider vertical fins; blinds often needed.</td></tr>
+                                <tr><td>West</td><td>20–30%</td><td>15–25%</td><td>10–20%</td><td>Worst for heat gain (afternoon sun + peak temperatures); prioritize low SHGC here.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="in-house-vs-mep" data-reveal>
+                    <h2>When to model in-house vs. engage an MEP engineer</h2>
+                    <p>There's a clean division of labor between early-phase exploration (in-house, ROM tools) and rigorous downstream analysis (MEP, full simulation).</p>
+
+                    <h3>Do in-house (COVE.TOOL or equivalent)</h3>
+                    <ul>
+                        <li>Early design exploration — massing studies, orientation, WWR.</li>
+                        <li>Quick comparisons — testing 2–3 envelope options.</li>
+                        <li>Conceptual feasibility — <em>"Can we hit 2030 targets?"</em></li>
+                        <li>Internal design reviews — supporting schematic decisions.</li>
+                        <li>Daylighting and solar — SDA / ASE studies, PV potential.</li>
+                    </ul>
+
+                    <h3>Engage MEP engineer</h3>
+                    <ul>
+                        <li>Code compliance — official energy code submittals.</li>
+                        <li>Complex HVAC — VRF, chilled beams, displacement ventilation.</li>
+                        <li>Detailed calculations — equipment sizing, peak loads.</li>
+                        <li>Financials — life-cycle cost analysis, detailed payback.</li>
+                        <li>Certification — LEED / third-party verified models.</li>
+                    </ul>
+                </section>
+
+                <section id="bim-authoring" data-reveal>
+                    <h2>Working from BIM authoring tools</h2>
+
+                    <h3>Revit export guidelines</h3>
+                    <ul>
+                        <li><strong>Detach first.</strong> Always create a detached copy before changing energy-related settings.</li>
+                        <li><strong>Type properties.</strong> All walls must be correctly assigned as exterior or interior.</li>
+                        <li><strong>Balconies.</strong> Model as separate elements and tag as Shading.</li>
+                        <li><strong>Curtain walls.</strong> Manually adjust spandrel panels to opaque if needed.</li>
+                        <li><strong>Partitions.</strong> Remove interior partitions for cleaner export.</li>
+                    </ul>
+
+                    <h3>Shoebox model tips</h3>
+                    <ul>
+                        <li><strong>Representative floors.</strong> Model one representative floor for tall buildings.</li>
+                        <li><strong>Tagging.</strong> Change non-exterior boundary surfaces to Shading.</li>
+                        <li><strong>Geometry.</strong> Use simple rectangular geometry early on. Avoid complex curves in the first pass.</li>
+                        <li><strong>Orientation.</strong> Orient the model to true north before export.</li>
+                    </ul>
+                </section>
+
+                <section id="quality-control" data-reveal>
+                    <h2>Quality control checklist</h2>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Geometry check</th>
+                                    <th scope="col">Inputs check</th>
+                                    <th scope="col">Results check</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Total floor area matches program</td><td>Climate zone is correct</td><td>EUI is in a reasonable range</td></tr>
+                                <tr><td>All surfaces correctly tagged</td><td>Building type matches program</td><td>End-use breakdown makes sense</td></tr>
+                                <tr><td>No overlapping surfaces</td><td>Envelope values match specs</td><td>Peak loads are plausible</td></tr>
+                                <tr><td>WWR matches design intent</td><td>System type is appropriate</td><td>Heating / cooling balance is right</td></tr>
+                                <tr><td>Orientation is correct</td><td>Infiltration rate is realistic</td><td>Document all assumptions</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="common-mistakes" data-reveal>
+                    <h2>Common mistakes to avoid</h2>
+
+                    <p><strong>Making exact predictions.</strong> Don't promise specific energy use, cost savings, or ROI to clients from an early-stage model. Use ranges and comparative statements.</p>
+
+                    <p><strong>Changing defaults without understanding.</strong> ROM tool defaults are based on code. Only modify settings you can justify with project-specific information.</p>
+
+                    <p><strong>Lowering infiltration rates too far.</strong> Default values are often already optimistic. Increasing infiltration is usually more realistic than decreasing it.</p>
+
+                    <p><strong>Ignoring geometry errors.</strong> Surfaces tagged incorrectly (exterior vs. interior) will dramatically skew results. Always verify geometry.</p>
+
+                    <p><strong>Comparing apples to oranges.</strong> When testing options, change one variable at a time. Keep all other assumptions constant.</p>
+
+                    <p><strong>Presenting results without context.</strong> Always include the baseline comparison, key assumptions, and caveats about model limitations.</p>
+                </section>
+
+                <section id="closing-reflection" data-reveal>
+                    <h2>A closing reflection: where this is going</h2>
+
+                    <p>The workflow above treats energy analysis as a series of discrete checkpoints — set up a model at the start of each phase, run it, interpret the results, move on. That's how the tools have been built. But it's not necessarily how the work needs to stay structured.</p>
+
+                    <p>The MOOSAS finding I opened with hints at something different. When designers had energy feedback <em>present</em> in the room — not requested, not waited for — they made measurably better decisions. The number didn't need to be precise. It needed to be there.</p>
+
+                    <p>Most of the friction in the current workflow is preparation, not analysis. Translating geometry from authoring tools into something a simulation engine can read. Tagging surfaces. Detaching files. Resolving overlapping volumes. The actual estimate, once the geometry is clean, takes seconds. So a useful direction for early-phase work is less <em>better simulation engines</em> and more <em>modeling conventions that travel</em> — geometry standards, layer structures, and tagging habits that keep a Rhino or Revit model continuously analysis-ready, so the cost of "running the numbers" approaches zero.</p>
+
+                    <p>That's the research direction I'm working in now: a live design-intelligence layer that sits next to floor area and program data inside Rhino, surfacing performance-relevant metrics — WWR by orientation, façade exposure, EUI range against the 2030 target — as the geometry changes. Not a replacement for COVE.TOOL or full MEP simulation. A companion that closes the gap between <em>modeling</em> and <em>thinking about performance</em>, so the two stop being separate activities.</p>
+
+                    <p>The phase-based workflow in this guide is the current state of the practice. The next state is one where the questions in column two of that first table get answered while you're still moving the geometry.</p>
+                </section>
+            </div>
+
+            <aside class="article-acknowledgments" id="acknowledgments" aria-label="Acknowledgments">
+                <p>This guide is adapted from <em>Energy-Informed Design Decisions v1.1</em> (May 2025), an internal guidance document I co-authored with <strong>Ryan Dirks</strong> and <strong>Mwanzaa Brown</strong> for the Perkins Eastman NYC Office. The phase-based workflow, baseline tables, EUI benchmarks, WWR guidance, QC checklist, and common-mistakes list originated in that collaborative work. Additions in this public version — the MOOSAS context, the reduced-order modeling framing, the floor-plate metrics note, and the closing reflection — are mine.</p>
+                <p>Versions: v1.0 (October 2024) — original draft, Perkins Eastman NYC Studio 1. v1.1 (May 2025) — expanded for the full NYC Office. Public adaptation (April 2026) — this version.</p>
+            </aside>
+        </article>
+
+        <nav class="article-nav" aria-label="Article navigation">
+            <a href="../research.html" class="prev">← All articles</a>
+        </nav>
+    </main>
+
+    <footer>
+        <span>© 2025 Yuchen Qiu</span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="../animations.js"></script>
+</body>
+</html>

@@ -400,3 +400,77 @@ Cover page (`index.html`) has its own inline `<script>` — it does not load `an
 - Declaration: `<link rel="icon" type="image/svg+xml" href="images/mark-light.svg">`
 - Path adjustment: project pages use `../images/mark-light.svg`
 - The two-polygon logo mark at native dark fill (`#1A1A18`)
+
+---
+
+## 12. Research / Articles
+
+The Research section (`/research.html` index + `/research/[slug].html` articles) extends the project-page typographic system to long-form prose, tables, and lists. It does not introduce a new color or surface — articles render on the same `--bg: #ffffff` as everything else.
+
+### Page structure
+
+Articles are wrapped in `<article>`, with these top-level containers (in order):
+
+1. `.article-header` — back-link, meta row (date · reading time · tags), `<h1>`, `.article-subtitle`, `.article-provenance`
+2. `.article-toc` — bordered top + bottom, two-column on desktop, single-column on mobile, numbered with `decimal-leading-zero`
+3. `.article-body` — sectioned by `<h2 id="slug">`, optional `<h3>`, prose / lists / tables / blockquotes
+4. `.article-footnotes` — numeric `<ol>`, in-text refs use `<sup><a href="#fn-1">1</a></sup>`
+5. `.article-acknowledgments` — small italic block. **Co-authors and source attribution belong here, not in the byline.**
+6. `.article-nav` — back to research / next article
+
+### Typography (article-specific)
+
+| Element | Treatment |
+|---|---|
+| Article `h1` | serif, `clamp(32px, 5vw, 44px)`, weight 400, line-height 1.2 (matches project h1) |
+| `.article-subtitle` | serif italic, 18px, muted, line-height 1.5 |
+| `.article-provenance` | italic 14px, left-bordered, muted — load-bearing context note |
+| `.article-meta` | uppercase 10px, 0.12em letter-spacing, separated by `·` middle dot |
+| `.article-body p` | 16px / 450 weight / line-height 1.8, max-width 800px |
+| `.article-body h2` | serif 24px, weight 400, `scroll-margin-top: 100px`, `margin-top: 64px` |
+| `.article-body h3` | serif 18px, weight 400, `scroll-margin-top: 100px`, `margin-top: 40px` |
+| `.article-body li` | inherits paragraph treatment; `margin-bottom: 8px` |
+| `.article-body code` | `ui-monospace` family, `0.9em`, subtle bg, 5px horizontal padding |
+| Inline links in `.article-body` | underlined with 3px offset, 1px thickness; hover → muted |
+
+### Tables
+
+Tables are essential, not decorative — never reformat them into definition lists. Always wrap in `<div class="table-wrap">` for horizontal overflow on mobile. Always use `<thead>` with `<th scope="col">`. The wrapper has top + bottom rules; the `<thead>` row gets a heavier bottom rule (`var(--text)`); body rows are separated by `var(--border)`.
+
+```html
+<div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col">Column</th></tr></thead>
+    <tbody><tr><td>Cell</td></tr></tbody>
+  </table>
+</div>
+```
+
+Mobile: tables drop to 13px and tighter padding. The wrapper handles overflow scroll with `-webkit-overflow-scrolling: touch`.
+
+### Anchor offset (critical)
+
+Because the header is `position: fixed`, smooth-scrolled anchor targets need `scroll-margin-top: 100px` to clear it. This is set on `.article-body h2` and `.article-body h3`. Do not remove. Test with both clicked-from-TOC and direct URL load (`?#section-id`).
+
+### Reveal animations
+
+Apply `data-reveal` to large block elements only — `.article-header`, `.article-toc`, and each `<section>` wrapping an H2. Do NOT put `data-reveal` on every paragraph; per-paragraph reveals feel chatty and break the editorial register.
+
+### Asset paths
+
+Articles live one directory deeper than home, so all asset references use `../`:
+- Stylesheet: `../style.css`
+- Animations: `../animations.js`
+- Logo: `../images/mark-light.svg`
+- Article images: `../images/research/[slug]/[file]`
+
+Article-specific images live in `images/research/[slug]/`. Reserve the folder when you create the article, even if no images at launch.
+
+### Adding an article
+
+1. Copy `research/_template.html` → `research/[slug].html`
+2. Replace placeholder tokens (title, date, meta, provenance, body, TOC entries)
+3. Add a `.research-entry` link to `research.html`, sorted by date descending
+4. Update prev/next links on adjacent articles (when more than one exists)
+5. Place any images in `images/research/[slug]/`
+6. Verify: nav has `Research` highlighted, TOC anchors land below the fixed header, tables scroll on mobile, reveals fire on sections (not paragraphs)

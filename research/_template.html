@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Article template skeleton. NOT a published article.
+    Underscore prefix signals: do not link from research.html or anywhere else.
+
+    To publish a new article:
+    1. Copy this file → research/[slug].html
+    2. Replace [SLUG], [TITLE], [SUBTITLE], [DATE], [READING_TIME], [TAGS], [META_DESCRIPTION], [PROVENANCE]
+    3. Replace TOC entries (one <li> per H2)
+    4. Replace body sections (one <section> per H2, with id matching TOC anchor)
+    5. Update prev/next nav at bottom (or remove if first/last article)
+    6. Add an entry to research.html index (sorted by date desc)
+    7. Image assets: place in images/research/[slug]/ and reference as ../images/research/[slug]/foo.jpg
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" type="image/svg+xml" href="../images/mark-light.svg">
+    <title>[TITLE] | Yuchen Qiu</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="[META_DESCRIPTION]">
+    <meta property="og:title" content="[TITLE] | Yuchen Qiu">
+    <meta property="og:description" content="[META_DESCRIPTION]">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <a href="../home.html" class="logo"><img src="../images/mark-light.svg" alt="Yuchen Qiu"></a>
+        <nav>
+            <a href="../home.html">Projects</a>
+            <a href="../research.html" class="active">Research</a>
+            <a href="../home.html#about">About</a>
+            <a href="../home.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section class="article-header" data-reveal>
+                <a href="../research.html" class="back-link">← Back to Research</a>
+                <div class="article-meta">
+                    <span>[DATE]</span>
+                    <span>[READING_TIME] min read</span>
+                    <span>[TAG_1]</span>
+                    <span>[TAG_2]</span>
+                </div>
+                <h1>[TITLE]</h1>
+                <p class="article-subtitle">[SUBTITLE]</p>
+                <p class="article-provenance">[PROVENANCE — italic note about source / context. Optional.]</p>
+            </section>
+
+            <nav class="article-toc" data-reveal aria-label="Table of contents">
+                <p class="article-toc-label">Contents</p>
+                <ol>
+                    <li><a href="#section-one">Section one</a></li>
+                    <li><a href="#section-two">Section two</a></li>
+                </ol>
+            </nav>
+
+            <div class="article-body">
+                <section id="section-one" data-reveal>
+                    <h2>Section one</h2>
+                    <p>Body paragraph.</p>
+                </section>
+
+                <section id="section-two" data-reveal>
+                    <h2>Section two</h2>
+                    <p>Body paragraph with an <a href="https://example.com" target="_blank" rel="noopener">external link</a> and a footnote reference.<sup><a href="#fn-1">1</a></sup></p>
+
+                    <h3>A subsection</h3>
+                    <p>More prose.</p>
+
+                    <ul>
+                        <li>An unordered list item.</li>
+                        <li>Another item.</li>
+                    </ul>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Column 1</th>
+                                    <th scope="col">Column 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="article-footnotes" aria-label="Footnotes">
+                <p class="article-footnotes-label">Footnotes</p>
+                <ol>
+                    <li id="fn-1">Footnote text.</li>
+                </ol>
+            </aside>
+
+            <aside class="article-acknowledgments" aria-label="Acknowledgments">
+                <p>Acknowledgments and co-author attribution go here.</p>
+            </aside>
+        </article>
+
+        <nav class="article-nav" aria-label="Article navigation">
+            <a href="../research.html" class="prev">← All articles</a>
+            <!-- <a href="next-slug.html" class="next">Next article →</a> -->
+        </nav>
+    </main>
+
+    <footer>
+        <span>© 2025 Yuchen Qiu</span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="../animations.js"></script>
+</body>
+</html>
