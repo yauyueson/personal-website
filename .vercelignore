@@ -1,0 +1,10 @@
+personal-website resources-unedited/
+test-results/
+.agents/
+.claude/
+.DS_Store
+**/.DS_Store
+lighthouse-*.json
+skills-lock.json
+CLAUDE.md
+DESIGN-GUIDELINES.md
