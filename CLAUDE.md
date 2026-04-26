@@ -48,12 +48,15 @@ No build, lint, or test commands exist.
 1. **`index.html`** — Cover/landing page with 3D embossed logo, auto-rotating slideshow, and scroll/click-to-enter transition. Has its own inline `<script>` (does NOT load `animations.js`).
 2. **`home.html`** — Main portfolio page with project grid, about section, and contact. Loads `animations.js`.
 3. **`projects/*.html`** — Individual project pages (7 total). Load `animations.js`. All paths use `../` prefix for assets.
+4. **`research.html`** — Index for the research section (long-form articles, methodology guides). Lists articles in reverse-chronological order. Loads `animations.js`.
+5. **`research/*.html`** — Individual long-form articles (e.g. `research/energy-informed-design.html`). Load `animations.js`. Use `../` prefix for assets, same as project pages.
 
 ### Key Files
 
-- **`style.css`** — Single shared stylesheet for home and project pages (cover page styles are inline in `index.html`)
-- **`animations.js`** — Shared GSAP + ScrollTrigger animation engine. Auto-detects page context (home vs. project) and runs appropriate animations. All functions are wrapped in an IIFE.
-- **`DESIGN-GUIDELINES.md`** — Comprehensive design spec: colors, typography, spacing, animation catalog, emboss technique. **Read this before making visual changes.**
+- **`style.css`** — Single shared stylesheet for home, project, and research pages (cover page styles are inline in `index.html`).
+- **`animations.js`** — Shared GSAP + ScrollTrigger animation engine. Auto-detects page context and runs appropriate animations. All functions are wrapped in an IIFE.
+- **`DESIGN-GUIDELINES.md`** — Comprehensive design spec: colors, typography, spacing, animation catalog, emboss technique, grain texture, and (§12) the article/research system. **Read this before making visual changes.**
+- **`research/_template.html`** — Reference skeleton for new articles (underscore prefix means "not a published article" — do not link).
 
 ### Animation System
 
@@ -69,11 +72,22 @@ All animations respect `prefers-reduced-motion: reduce`.
 4. Add a `.project-item[data-reveal]` card to `home.html` project grid
 5. Update prev/next navigation links in adjacent project pages
 
+### Adding a New Article
+
+1. Copy `research/_template.html` → `research/[slug].html`
+2. Replace placeholder tokens (title, subtitle, date, reading time, tags, provenance, body, TOC entries)
+3. Add a `.research-entry` link to `research.html`, sorted by date descending
+4. Update prev/next links on adjacent articles when more than one exists
+5. Place any images in `images/research/[slug]/` and reference as `../images/research/[slug]/[file]`
+6. Read `DESIGN-GUIDELINES.md` §12 before any structural change to article styling — that section is the contract for the publishing pipeline
+
 ### Conventions
 
-- Project pages reference `../style.css`, `../images/`, and `../animations.js`
-- Home page uses root-relative paths (`style.css`, `images/`, `animations.js`)
-- Scroll-reveal elements use the `data-reveal` attribute (batch-animated by `animations.js`)
+- Project and research article pages reference `../style.css`, `../images/`, and `../animations.js`
+- Home and `research.html` index use root-relative paths (`style.css`, `images/`, `animations.js`)
+- Scroll-reveal elements use the `data-reveal` attribute (batch-animated by `animations.js`). On articles, apply only to large block elements — `.article-header`, `.article-toc`, and per-section `<section>` wrappers — never per paragraph
 - Image classes in project pages: `.image-full` (clip-wipe reveal), `.image-grid` (2-col layout), `.image-text` (inline text blocks)
+- Article body classes: `.article-header`, `.article-toc`, `.article-body`, `.table-wrap` for table mobile overflow, `.article-provenance` for italic source notes, `.article-footnotes`, `.article-acknowledgments`
 - CSS custom properties defined in `:root` of `style.css`: `--bg`, `--text`, `--text-muted`, `--border`, `--font-serif`, `--font-sans`
 - Fonts: Libre Baskerville (serif headings) + Archivo (sans body), loaded from Google Fonts
+- Sitewide grain texture overlay (`body::after`, opacity 0.18) is duplicated in `style.css` and inline in `index.html` — keep both in sync when tuning

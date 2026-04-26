@@ -1,7 +1,7 @@
 # Design Guidelines — Yuchen Qiu Portfolio
 
 > Studio Liminal | Architecture + Design
-> Last updated: 2026-04-03
+> Last updated: 2026-04-25
 
 ---
 
@@ -25,7 +25,7 @@ A restrained, material-driven aesthetic inspired by architectural presentation a
 |-------|-------|-------|
 | `--bg` | `#FFFFFF` | Page background (home, projects) |
 | `--text` | `#1A1A1A` | Primary text |
-| `--text-muted` | `#888888` | Secondary text, labels, metadata |
+| `--text-muted` | `#6E6E6E` | Secondary text, labels, metadata |
 | `--border` | `#E5E5E5` | Dividers, borders |
 
 ### 2.2 Cover Page Palette
@@ -227,6 +227,17 @@ Symmetric mirror layout — the small tagline is sandwiched between two equal-we
 - `scaleX(0)` to `scaleX(1)` on hover, origin left
 - Transition: 0.3s ease
 
+### 6.6 Grain Texture Overlay
+
+A subtle SVG fractal-noise grain laid over every page to evoke the tactility of printed paper. Sitewide; applied via `body::after` pseudo-element so it never blocks pointer events.
+
+- Implementation: inline SVG `feTurbulence` (fractal noise, `baseFrequency: 0.75`, 4 octaves, stitched tiles), tiled at 512×512
+- Position: `fixed; inset: 0; z-index: 9999; pointer-events: none`
+- Opacity: **0.18** (intentionally near the perceptual floor — present, not visible)
+- Two locations: `style.css` (home, project, research pages) and inline in `index.html` (cover page). Keep both in sync when tuning.
+
+If the grain ever feels noisy on a new surface, drop the opacity rather than removing the rule. The texture is load-bearing in setting the editorial / letterpress register.
+
 ---
 
 ## 7. Cover Page — Embossed Logo
@@ -252,12 +263,14 @@ Symmetric mirror layout — the small tagline is sandwiched between two equal-we
 | Left bar | `(0,0) (11,6) (11,80) (0,80)` |
 | Right bar | `(27,24) (38,18) (38,80) (27,80)` |
 
-### 7.3 Clip-Path (objectBoundingBox, inset 0.8 units)
+### 7.3 Clip-Path (objectBoundingBox, asymmetric inset)
+
+The slideshow image is clipped *inside* the embossed logo silhouette using a subtly inset polygon. Insets are asymmetric — `0.65` units on the highlight edges (left, top) and `0.95` units on the shadow edges (right, bottom) — to compensate for the perceptual offset created by the emboss lighting (top-left lit, bottom-right shadowed). A symmetric inset reads as visually off-center; the asymmetric one reads as balanced.
 
 | Shape | Normalized Points |
 |-------|-------------------|
-| Left inset | `0.0211,0.0169  0.2684,0.081  0.2684,0.99  0.0211,0.99` |
-| Right inset | `0.7316,0.3059  0.9789,0.2419  0.9789,0.99  0.7316,0.99` |
+| Left inset | `0.0171,0.0137  0.2645,0.0778  0.2645,0.9881  0.0171,0.9881` |
+| Right inset | `0.7276,0.3048  0.9750,0.2407  0.9750,0.9881  0.7276,0.9881` |
 
 ### 7.4 Emboss Technique
 
