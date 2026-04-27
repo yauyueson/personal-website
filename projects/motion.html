@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" type="image/svg+xml" href="../images/mark-light.svg">
     <title>Motion | Yuchen Qiu</title>
@@ -60,31 +61,31 @@
 
         <div class="project-images">
             <!-- Hero - Plaza View -->
-            <img src="../images/motion/01-plaza.jpg" alt="Motion - Plaza View" class="image-full">
+            <picture><source srcset="../images/motion/01-plaza.avif" type="image/avif"><img src="../images/motion/01-plaza.jpg" alt="Motion - Plaza View" class="image-full" decoding="async" fetchpriority="high" width="1800" height="1013"></picture>
             
             <div class="image-text">
                 <p>The design preserves the historic railway shed's architectural character while inserting new programmatic volumes that activate the space for contemporary use. The majority of the shed structure is maintained, with selective demolition of the western bays to create a new public plaza that welcomes visitors from the city.</p>
             </div>
             
             <!-- Site Analysis + Plan -->
-            <img src="../images/motion/02-site-plan.jpg" alt="Motion - Site Plan" class="image-full">
+            <picture><source srcset="../images/motion/02-site-plan.avif" type="image/avif"><img src="../images/motion/02-site-plan.jpg" alt="Motion - Site Plan" class="image-full" decoding="async" loading="lazy" width="1800" height="1200"></picture>
             
             <div class="image-text">
                 <p>New exhibition boxes are inserted within the shed's steel frame, creating a dialogue between old and new. These colorful volumes house galleries, theaters, and educational spaces, their bold presence announcing the building's new cultural mission while the surrounding shed structure provides context and continuity with the past.</p>
             </div>
             
             <!-- Interior + Section -->
-            <img src="../images/motion/03-interior-section.jpg" alt="Motion - Interior and Section" class="image-full">
+            <picture><source srcset="../images/motion/03-interior-section.avif" type="image/avif"><img src="../images/motion/03-interior-section.jpg" alt="Motion - Interior and Section" class="image-full" decoding="async" loading="lazy" width="1800" height="1200"></picture>
             
             <!-- Gallery Strategy -->
-            <img src="../images/motion/04-gallery.jpg" alt="Motion - Gallery Design" class="image-full">
+            <picture><source srcset="../images/motion/04-gallery.avif" type="image/avif"><img src="../images/motion/04-gallery.jpg" alt="Motion - Gallery Design" class="image-full" decoding="async" loading="lazy" width="1800" height="1200"></picture>
             
             <div class="image-text">
                 <p>The gallery spaces within the shed employ a flexible system of movable exhibition cabins mounted on the original rail tracks. These cabins can be reconfigured to accommodate different exhibition types and scales, maintaining a connection to the site's transportation heritage while enabling contemporary curatorial practices.</p>
             </div>
             
             <!-- Overview + Section Perspective -->
-            <img src="../images/motion/05-overview.jpg" alt="Motion - Overview" class="image-full">
+            <picture><source srcset="../images/motion/05-overview.avif" type="image/avif"><img src="../images/motion/05-overview.jpg" alt="Motion - Overview" class="image-full" decoding="async" loading="lazy" width="1800" height="1200"></picture>
             
             <div class="image-text">
                 <p>The cultural center serves the local community by providing spaces of gathering and leisure, while also functioning as an icon embracing the values of unity and liberty—not only for the city but for the nation. It transforms a forgotten infrastructure into a vibrant destination that honors the past while creating space for new stories to unfold.</p>
@@ -101,8 +102,8 @@
     <footer>
         <span>© 2025 Yuchen Qiu</span>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script src="../animations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+    <script src="../animations.js" defer></script>
 </body>
 </html>

@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="preload" href="images/cover/spira-silva.jpg" as="image">
-    <link rel="preload" href="images/cover/ripple.jpg" as="image">
+    <link rel="preload" as="image" href="images/cover/spira-silva.avif" type="image/avif" fetchpriority="high">
+    <link rel="preload" as="image" href="images/cover/ripple.avif" type="image/avif">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" as="script">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,6 +83,8 @@
         }
 
         .slide.active { opacity: 1; }
+
+        .slide picture { display: contents; }
 
         .slide img {
             width: 100%;
@@ -353,19 +355,31 @@
             <!-- Slideshow — clipped to inset logo shape -->
             <div class="cover-slideshow">
                 <div class="slide active">
-                    <img src="images/cover/spira-silva.jpg" alt="Spira Silva">
+                    <picture>
+                        <source srcset="images/cover/spira-silva.avif" type="image/avif">
+                        <img src="images/cover/spira-silva.jpg" alt="Spira Silva" decoding="async" fetchpriority="high">
+                    </picture>
                     <div class="slide-overlay"></div>
                 </div>
                 <div class="slide">
-                    <img src="images/cover/ripple.jpg" alt="The Ripple">
+                    <picture>
+                        <source srcset="images/cover/ripple.avif" type="image/avif">
+                        <img src="images/cover/ripple.jpg" alt="The Ripple" decoding="async">
+                    </picture>
                     <div class="slide-overlay"></div>
                 </div>
                 <div class="slide">
-                    <img src="images/cover/loop.jpg" alt="The Loop">
+                    <picture>
+                        <source srcset="images/cover/loop.avif" type="image/avif">
+                        <img src="images/cover/loop.jpg" alt="The Loop" loading="lazy" decoding="async">
+                    </picture>
                     <div class="slide-overlay"></div>
                 </div>
                 <div class="slide">
-                    <img src="images/cover/school.png" alt="School of Methodology">
+                    <picture>
+                        <source srcset="images/cover/school.avif" type="image/avif">
+                        <img src="images/cover/school.png" alt="School of Methodology" loading="lazy" decoding="async">
+                    </picture>
                     <div class="slide-overlay"></div>
                 </div>
             </div>

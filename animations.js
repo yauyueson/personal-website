@@ -25,26 +25,31 @@
     }
 
     /**
-     * Header: hide on scroll down, show on scroll up
+     * Header: hide on scroll down, show on scroll up.
+     * Only triggers a tween when direction state actually changes —
+     * avoids creating fresh tweens on every scroll tick.
      */
     function initHeaderBehavior() {
         const header = document.querySelector('header');
         if (!header) return;
 
         let lastScrollY = 0;
+        let hidden = false;
 
         ScrollTrigger.create({
             start: 'top -80',
             onUpdate: (self) => {
                 const currentScrollY = self.scroll();
-                if (currentScrollY > lastScrollY && currentScrollY > 120) {
-                    // Scrolling down
-                    gsap.to(header, { y: -100, duration: 0.3, ease: 'power2.out' });
-                } else {
-                    // Scrolling up
-                    gsap.to(header, { y: 0, duration: 0.3, ease: 'power2.out' });
-                }
+                const goingDown = currentScrollY > lastScrollY && currentScrollY > 120;
                 lastScrollY = currentScrollY;
+
+                if (goingDown && !hidden) {
+                    hidden = true;
+                    gsap.to(header, { y: -100, duration: 0.3, ease: 'power2.out', overwrite: true });
+                } else if (!goingDown && hidden) {
+                    hidden = false;
+                    gsap.to(header, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: true });
+                }
             }
         });
     }
@@ -96,14 +101,17 @@
     }
 
     /**
-     * Image reveal: clip-path wipe on scroll
+     * Image reveal: clip-path wipe on scroll.
+     * The first .image-full is skipped — it's the LCP hero, leave it
+     * painted at first frame instead of hiding then animating in.
      */
     function initImageReveal() {
         const fullImages = document.querySelectorAll('.image-full');
         const gridImages = document.querySelectorAll('.image-grid img');
 
         if (fullImages.length) {
-            fullImages.forEach(img => {
+            fullImages.forEach((img, i) => {
+                if (i === 0) return;
                 gsap.set(img, { clipPath: 'inset(0 0 100% 0)' });
                 gsap.to(img, {
                     clipPath: 'inset(0 0 0% 0)',

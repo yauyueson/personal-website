@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" type="image/svg+xml" href="../images/mark-light.svg">
     <title>The Ripple | Yuchen Qiu</title>
@@ -56,17 +57,17 @@
 
         <div class="project-images">
             <!-- Hero - Aerial View -->
-            <img src="../images/the-ripple/01-aerial.jpg" alt="The Ripple - Aerial View" class="image-full">
+            <picture><source srcset="../images/the-ripple/01-aerial.avif" type="image/avif"><img src="../images/the-ripple/01-aerial.jpg" alt="The Ripple - Aerial View" class="image-full" decoding="async" fetchpriority="high" width="1800" height="1800"></picture>
             
             <!-- Courtyard -->
-            <img src="../images/the-ripple/02-courtyard.jpg" alt="The Ripple - Courtyard" class="image-full">
+            <picture><source srcset="../images/the-ripple/02-courtyard.avif" type="image/avif"><img src="../images/the-ripple/02-courtyard.jpg" alt="The Ripple - Courtyard" class="image-full" decoding="async" loading="lazy" width="1800" height="1800"></picture>
             
             <div class="image-text">
                 <p>The design draws from the traditional Chinese 祖屋 (ancestral house)—a dwelling type organized around a central courtyard that serves as the heart of family life. Here, this courtyard becomes a healing garden, a place of gathering, reflection, and connection to nature for patients, families, and caregivers alike.</p>
             </div>
             
             <!-- Concept Diagram -->
-            <img src="../images/the-ripple/03-diagram.jpg" alt="The Ripple - Concept Diagram" class="image-full">
+            <picture><source srcset="../images/the-ripple/03-diagram.avif" type="image/avif"><img src="../images/the-ripple/03-diagram.jpg" alt="The Ripple - Concept Diagram" class="image-full" decoding="async" loading="lazy" width="1800" height="474"></picture>
             
             <div class="image-text">
                 <p>The building's massing ripples outward from the central courtyard, creating a series of intimate spaces at varying scales. Private patient rooms enjoy views of greenery and sky, while shared spaces encourage gentle social interaction without overwhelming those who seek solitude.</p>
@@ -74,14 +75,14 @@
             
             <!-- Street View + Chapel -->
             <div class="image-grid">
-                <img src="../images/the-ripple/04-street-view.jpg" alt="The Ripple - Street View">
-                <img src="../images/the-ripple/05-chapel.jpg" alt="The Ripple - Chapel">
+                <picture><source srcset="../images/the-ripple/04-street-view.avif" type="image/avif"><img src="../images/the-ripple/04-street-view.jpg" alt="The Ripple - Street View" decoding="async" loading="lazy" width="1000" height="552"></picture>
+                <picture><source srcset="../images/the-ripple/05-chapel.avif" type="image/avif"><img src="../images/the-ripple/05-chapel.jpg" alt="The Ripple - Chapel" decoding="async" loading="lazy" width="1000" height="750"></picture>
             </div>
             
             <!-- Library + Therapy -->
             <div class="image-grid">
-                <img src="../images/the-ripple/06-library.jpg" alt="The Ripple - Library">
-                <img src="../images/the-ripple/07-therapy.jpg" alt="The Ripple - Therapy Room">
+                <picture><source srcset="../images/the-ripple/06-library.avif" type="image/avif"><img src="../images/the-ripple/06-library.jpg" alt="The Ripple - Library" decoding="async" loading="lazy" width="1000" height="750"></picture>
+                <picture><source srcset="../images/the-ripple/07-therapy.avif" type="image/avif"><img src="../images/the-ripple/07-therapy.jpg" alt="The Ripple - Therapy Room" decoding="async" loading="lazy" width="1000" height="746"></picture>
             </div>
             
             <div class="image-text">
@@ -89,17 +90,17 @@
             </div>
             
             <!-- Floor Plan -->
-            <img src="../images/the-ripple/08-plan.jpg" alt="The Ripple - Floor Plan" class="image-full">
+            <picture><source srcset="../images/the-ripple/08-plan.avif" type="image/avif"><img src="../images/the-ripple/08-plan.jpg" alt="The Ripple - Floor Plan" class="image-full" decoding="async" loading="lazy" width="1800" height="2581"></picture>
             
             <!-- Sustainability -->
-            <img src="../images/the-ripple/09-sustainability.jpg" alt="The Ripple - Sustainability Diagram" class="image-full">
+            <picture><source srcset="../images/the-ripple/09-sustainability.avif" type="image/avif"><img src="../images/the-ripple/09-sustainability.jpg" alt="The Ripple - Sustainability Diagram" class="image-full" decoding="async" loading="lazy" width="1800" height="343"></picture>
             
             <div class="image-text">
                 <p>The building envelope is designed for passive performance, with deep overhangs providing shade and operable windows enabling natural ventilation. Green roofs and rainwater harvesting systems reduce environmental impact while creating additional therapeutic landscapes.</p>
             </div>
             
             <!-- Wall Section -->
-            <img src="../images/the-ripple/10-wall-section.jpg" alt="The Ripple - Wall Section" class="image-full">
+            <picture><source srcset="../images/the-ripple/10-wall-section.avif" type="image/avif"><img src="../images/the-ripple/10-wall-section.jpg" alt="The Ripple - Wall Section" class="image-full" decoding="async" loading="lazy" width="1800" height="1751"></picture>
         </div>
     </section>
 
@@ -112,8 +113,8 @@
     <footer>
         <span>© 2025 Yuchen Qiu</span>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script src="../animations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+    <script src="../animations.js" defer></script>
 </body>
 </html>

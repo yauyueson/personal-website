@@ -47,6 +47,17 @@ a {
     text-decoration: none;
 }
 
+/* <picture> is a transparent wrapper for AVIF/JPG source negotiation —
+   take it out of the layout so children inherit parent box rules directly. */
+picture {
+    display: contents;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Header */
 header {
     position: fixed;
@@ -563,6 +574,17 @@ button:focus-visible {
     *, *::before, *::after {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+    }
+}
+
+/* Reveal animation initial state via CSS — only when JS available and motion allowed.
+   Pre-hides reveal targets so they don't flash before animations.js runs.
+   .js class is set by an inline script in <head>; non-JS users see content unhidden.
+   The first project card is left without data-reveal so it paints immediately as LCP. */
+@media (prefers-reduced-motion: no-preference) {
+    .js [data-reveal] {
+        opacity: 0;
+        transform: translateY(50px);
     }
 }
 
