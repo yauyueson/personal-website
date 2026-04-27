@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Yuchen Qiu | Architect</title>
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fbf8f2">
     <meta name="description" content="Studio Liminal — Architecture and design portfolio by Yuchen Qiu.">
     <link rel="icon" type="image/svg+xml" href="images/mark-light.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
         body {
             font-family: 'Archivo', -apple-system, sans-serif;
-            background: #ffffff;
+            background: #fbf8f2;
             color: #1a1a1a;
             overflow: hidden;
             height: 100vh;
@@ -35,7 +35,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #ffffff;
+            background: #fbf8f2;
             padding-bottom: 4vh;
         }
 
@@ -57,6 +57,9 @@
             aspect-ratio: 38 / 80;
             flex-shrink: 0;
             overflow: hidden;
+            /* Cross-document View Transitions: this snapshot morphs into
+               .logo img on home/project pages on navigation. */
+            view-transition-name: site-logo;
         }
 
         .logo-emboss {
@@ -83,6 +86,14 @@
         }
 
         .slide.active { opacity: 1; }
+
+        /* Inner curtain wrapper — JS animates clip-path inset between slides
+           to produce a curtain rise within the logo's clip shape. */
+        .slide-clip {
+            position: absolute;
+            inset: 0;
+            clip-path: inset(0);
+        }
 
         .slide picture { display: contents; }
 
@@ -161,71 +172,38 @@
             opacity: 0;
         }
 
-        .indicators {
+        /* Editorial slide counter — replaces both indicator bars and scroll hint */
+        .slide-counter {
             position: absolute;
             bottom: max(4vh, calc(env(safe-area-inset-bottom) + 2vh));
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
-            gap: 12px;
-        }
-
-        /* Scroll hint — bouncing chevron */
-        .scroll-hint {
-            position: absolute;
-            bottom: max(1.5vh, env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            color: rgba(26, 26, 26, 0.55);
             opacity: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
+            font-variant-numeric: tabular-nums;
+            user-select: none;
         }
 
-        .scroll-hint span {
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-right: 1.5px solid rgba(26, 26, 26, 0.25);
-            border-bottom: 1.5px solid rgba(26, 26, 26, 0.25);
-            transform: rotate(45deg);
+        .slide-counter .slide-divider {
+            opacity: 0.5;
+            font-weight: 300;
         }
 
-        .indicator {
-            width: 24px;
-            height: 2px;
-            background: rgba(26, 26, 26, 0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+        .slide-counter .slide-total {
+            color: rgba(26, 26, 26, 0.4);
         }
-
-        .indicator::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            bottom: -12px;
-            left: -4px;
-            right: -4px;
-        }
-
-        .indicator-fill {
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: 0%;
-            background: rgba(26, 26, 26, 0.45);
-        }
-
-        .indicator.active .indicator-fill { width: 100%; }
 
         .transition-overlay {
             position: fixed;
             inset: 0;
-            background: #ffffff;
+            background: #fbf8f2;
             z-index: 100;
             opacity: 0;
             pointer-events: none;
@@ -243,7 +221,7 @@
         /* Reduced motion: show all content immediately */
         @media (prefers-reduced-motion: reduce) {
             .cover-name, .cover-tagline, .cover-studio, .cover-jian,
-            .logo-frame, .indicators, .scroll-hint {
+            .logo-frame, .slide-counter {
                 opacity: 1 !important;
             }
             .slide:first-child { opacity: 1 !important; }
@@ -352,53 +330,48 @@
                       stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
             </svg>
 
-            <!-- Slideshow — clipped to inset logo shape -->
+            <!-- Slideshow — outer .slide is clipped to logo shape;
+                 inner .slide-clip animates a curtain inset for the reveal between slides. -->
             <div class="cover-slideshow">
                 <div class="slide active">
-                    <picture>
-                        <source srcset="images/cover/spira-silva.avif" type="image/avif">
-                        <img src="images/cover/spira-silva.jpg" alt="Spira Silva" decoding="async" fetchpriority="high">
-                    </picture>
-                    <div class="slide-overlay"></div>
+                    <div class="slide-clip">
+                        <picture>
+                            <source srcset="images/cover/spira-silva.avif" type="image/avif">
+                            <img src="images/cover/spira-silva.jpg" alt="Spira Silva" decoding="async" fetchpriority="high">
+                        </picture>
+                        <div class="slide-overlay"></div>
+                    </div>
                 </div>
                 <div class="slide">
-                    <picture>
-                        <source srcset="images/cover/ripple.avif" type="image/avif">
-                        <img src="images/cover/ripple.jpg" alt="The Ripple" decoding="async">
-                    </picture>
-                    <div class="slide-overlay"></div>
+                    <div class="slide-clip">
+                        <picture>
+                            <source srcset="images/cover/ripple.avif" type="image/avif">
+                            <img src="images/cover/ripple.jpg" alt="The Ripple" decoding="async">
+                        </picture>
+                        <div class="slide-overlay"></div>
+                    </div>
                 </div>
                 <div class="slide">
-                    <picture>
-                        <source srcset="images/cover/loop.avif" type="image/avif">
-                        <img src="images/cover/loop.jpg" alt="The Loop" loading="lazy" decoding="async">
-                    </picture>
-                    <div class="slide-overlay"></div>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source srcset="images/cover/school.avif" type="image/avif">
-                        <img src="images/cover/school.png" alt="School of Methodology" loading="lazy" decoding="async">
-                    </picture>
-                    <div class="slide-overlay"></div>
+                    <div class="slide-clip">
+                        <picture>
+                            <source srcset="images/cover/loop.avif" type="image/avif">
+                            <img src="images/cover/loop.jpg" alt="The Loop" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="slide-overlay"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="cover-content">
             <span class="cover-name">Yuchen Qiu</span>
-            <span class="cover-tagline">Architecture | Design</span>
+            <span class="cover-tagline">Architecture &mdash; Design</span>
         </div>
 
-        <div class="indicators">
-            <div class="indicator active"><div class="indicator-fill"></div></div>
-            <div class="indicator"><div class="indicator-fill"></div></div>
-            <div class="indicator"><div class="indicator-fill"></div></div>
-            <div class="indicator"><div class="indicator-fill"></div></div>
-        </div>
-
-        <div class="scroll-hint">
-            <span></span>
+        <div class="slide-counter" aria-hidden="true">
+            <span class="slide-current">01</span>
+            <span class="slide-divider">/</span>
+            <span class="slide-total">03</span>
         </div>
 
         <div class="transition-overlay"></div>
@@ -426,8 +399,9 @@
 
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const slides = document.querySelectorAll('.slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const indicatorFills = document.querySelectorAll('.indicator-fill');
+            const slideClips = document.querySelectorAll('.slide-clip');
+            const slideCounter = document.querySelector('.slide-counter');
+            const slideCurrent = document.querySelector('.slide-current');
             const logoFrame = document.querySelector('.logo-frame');
             const coverName = document.querySelector('.cover-name');
             const coverStudio = document.querySelector('.cover-studio');
@@ -437,8 +411,13 @@
 
             let currentSlide = 0;
             const slideDuration = 5;
+            const revealDuration = 1.4;
             let slideTimer = null;
             let kenBurnsTween = null;
+
+            function setCounter(idx) {
+                if (slideCurrent) slideCurrent.textContent = String(idx + 1).padStart(2, '0');
+            }
 
             function startKenBurns(slideEl) {
                 const img = slideEl.querySelector('img');
@@ -457,18 +436,41 @@
                 });
             }
 
+            // Curtain-rise reveal: new slide's inner .slide-clip animates from
+            // inset(100% 0 0 0) (fully clipped) to inset(0) (fully visible),
+            // revealing the image from bottom-up within the logo shape.
             function goToSlide(index) {
                 if (index === currentSlide) return;
-                gsap.to(slides[currentSlide], { opacity: 0, duration: 1.2, ease: 'power2.inOut' });
-                gsap.to(indicatorFills[currentSlide], { width: '0%', duration: 0.3 });
                 if (kenBurnsTween) kenBurnsTween.kill();
+
+                const oldSlide = slides[currentSlide];
+                const newSlide = slides[index];
+                const newClip = newSlide.querySelector('.slide-clip');
+
+                // New slide becomes visible (full opacity), clip starts hidden
+                gsap.set(newSlide, { opacity: 1 });
+                gsap.set(newClip, { clipPath: 'inset(100% 0 0 0)' });
+                gsap.to(newClip, {
+                    clipPath: 'inset(0% 0 0 0)',
+                    duration: revealDuration,
+                    ease: 'power3.inOut'
+                });
+                // Old slide fades out behind the rising curtain
+                gsap.to(oldSlide, {
+                    opacity: 0,
+                    duration: revealDuration * 0.6,
+                    delay: revealDuration * 0.5,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        // Reset old slide's curtain so it can re-enter cleanly
+                        const oc = oldSlide.querySelector('.slide-clip');
+                        if (oc) gsap.set(oc, { clipPath: 'inset(0)' });
+                    }
+                });
+
                 currentSlide = index;
-                gsap.to(slides[currentSlide], { opacity: 1, duration: 1.2, ease: 'power2.inOut' });
-                startKenBurns(slides[currentSlide]);
-                gsap.fromTo(indicatorFills[currentSlide],
-                    { width: '0%' },
-                    { width: '100%', duration: slideDuration, ease: 'none' }
-                );
+                startKenBurns(newSlide);
+                setCounter(index);
             }
 
             function nextSlide() {
@@ -477,25 +479,13 @@
 
             function startSlideshow() {
                 startKenBurns(slides[0]);
-                gsap.fromTo(indicatorFills[0],
-                    { width: '0%' },
-                    { width: '100%', duration: slideDuration, ease: 'none' }
-                );
+                setCounter(0);
                 slideTimer = setInterval(nextSlide, slideDuration * 1000);
             }
 
-            indicators.forEach((ind, i) => {
-                ind.addEventListener('click', () => {
-                    if (i === currentSlide) return;
-                    clearInterval(slideTimer);
-                    goToSlide(i);
-                    slideTimer = setInterval(nextSlide, slideDuration * 1000);
-                });
-            });
-
             function playLoadAnimation() {
                 if (prefersReducedMotion) {
-                    gsap.set([coverName, coverStudio, coverJian, coverTagline], { opacity: 1 });
+                    gsap.set([coverName, coverStudio, coverJian, coverTagline, slideCounter], { opacity: 1 });
                     gsap.set(logoFrame, { scale: 1, opacity: 1 });
                     startSlideshow();
                     return;
@@ -507,13 +497,15 @@
                 gsap.set(coverJian, { y: -6, opacity: 0 });
                 gsap.set(coverName, { y: 12, opacity: 0 });
                 gsap.set(coverTagline, { y: 8, opacity: 0 });
+                gsap.set(slideCounter, { opacity: 0, y: 6 });
                 const tl = gsap.timeline({ onComplete: () => startSlideshow() });
                 tl.to(coverStudio, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
                   .to(coverJian, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.3')
                   .to(logoFrame, { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.2)' }, '-=0.2')
                   .to(slides[0], { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
                   .to(coverName, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-                  .to(coverTagline, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.25');
+                  .to(coverTagline, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.25')
+                  .to(slideCounter, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
             }
 
             function initMouseParallax() {
@@ -536,24 +528,36 @@
                 });
             }
 
-            /* ── Shared exit transition ── */
+            /* ── Shared exit transition ──
+               Modern browsers (Chrome 126+, Safari 18.2+) use cross-document
+               View Transitions to morph the embossed logo into the home header.
+               Older browsers fall back to the GSAP zoom + crossfade. */
             let isExiting = false;
             const targetHref = 'home.html';
+            const supportsCrossDocVT = (
+                'startViewTransition' in document &&
+                CSS.supports('view-transition-name', 'site-logo')
+            );
 
             function playExitAnimation() {
                 if (isExiting) return;
                 isExiting = true;
                 clearInterval(slideTimer);
 
+                // Modern browsers: skip the GSAP zoom — let the browser morph
+                // .logo-emboss into home's .logo img via cross-document VT.
+                if (supportsCrossDocVT) {
+                    window.location.href = targetHref;
+                    return;
+                }
+
                 if (prefersReducedMotion) {
                     window.location.href = targetHref;
                     return;
                 }
 
-                const scrollHint = document.querySelector('.scroll-hint');
                 const tl = gsap.timeline({ onComplete: () => { window.location.href = targetHref; } });
-
-                tl.to([coverName, coverStudio, coverJian, coverTagline, '.indicators', scrollHint], {
+                tl.to([coverName, coverStudio, coverJian, coverTagline, slideCounter], {
                     opacity: 0, y: -15, duration: 0.35, ease: 'power2.in', stagger: 0.04
                 })
                 .to(logoFrame, {
@@ -595,24 +599,8 @@
                 }
             }, { passive: true });
 
-            /* ── Scroll hint animation ── */
-            function initScrollHint() {
-                const hint = document.querySelector('.scroll-hint');
-                if (!hint || prefersReducedMotion) return;
-
-                gsap.to(hint, {
-                    opacity: 1, duration: 0.6, delay: 2.5, ease: 'power2.out'
-                });
-
-                gsap.to(hint, {
-                    y: 4, duration: 1.2, ease: 'sine.inOut',
-                    repeat: -1, yoyo: true, delay: 2.5
-                });
-            }
-
             playLoadAnimation();
             initMouseParallax();
-            initScrollHint();
         })();
     </script>
 </body>
