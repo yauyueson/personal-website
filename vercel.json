@@ -60,12 +60,12 @@
     },
     {
       "source": "/research/energy-informed-design",
-      "destination": "/research/performance-informed-design",
+      "destination": "/research/performance-informed-design.html",
       "permanent": true
     },
     {
       "source": "/research/energy-informed-design.html",
-      "destination": "/research/performance-informed-design",
+      "destination": "/research/performance-informed-design.html",
       "permanent": true
     },
     {
