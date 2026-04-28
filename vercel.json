@@ -57,6 +57,21 @@
       ],
       "destination": "https://yuchenqiu.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/research/energy-informed-design",
+      "destination": "/research/performance-informed-design",
+      "permanent": true
+    },
+    {
+      "source": "/research/energy-informed-design.html",
+      "destination": "/research/performance-informed-design",
+      "permanent": true
+    },
+    {
+      "source": "/images/research/energy-informed-design/:file*",
+      "destination": "/images/research/performance-informed-design/:file*",
+      "permanent": true
     }
   ]
 }

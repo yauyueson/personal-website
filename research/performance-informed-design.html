@@ -7,9 +7,9 @@
     <link rel="icon" type="image/svg+xml" href="../images/mark-light.svg">
     <title>Performance-informed integrated design | Yuchen Qiu</title>
     <meta name="theme-color" content="#fbf8f2">
-    <meta name="description" content="Performance-informed integrated design — a method, not a workflow. What it is, the five levers it works on, and the cases from practice that show where each lever lives in design.">
+    <meta name="description" content="Performance-informed integrated design — what it is, the five levers it works on, and the cases from practice that show where each lever lives in design.">
     <meta property="og:title" content="Performance-informed integrated design | Yuchen Qiu">
-    <meta property="og:description" content="Performance-informed integrated design — a method, not a workflow. What it is, the five levers it works on, and the cases from practice.">
+    <meta property="og:description" content="Performance-informed integrated design — what it is, the five levers it works on, and the cases from practice.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
                     <span>Sustainability</span>
                 </div>
                 <h1>Performance-informed integrated design</h1>
-                <p class="article-subtitle">Performance-informed integrated design — a method, not a workflow. What it is, the five levers it works on, and four cases from practice that show where each lever actually lives in design.</p>
+                <p class="article-subtitle">Performance-informed integrated design — what it is, the five levers it works on, and the cases from practice that show where each lever actually lives in design.</p>
             </section>
 
             <nav class="article-toc" data-reveal aria-label="Table of contents">
@@ -48,7 +48,7 @@
                     <p class="article-toc-part"><span>Part I</span>The argument</p>
                     <ol>
                         <li><a href="#operational-embodied">Operational vs embodied — the energy we mean</a></li>
-                        <li><a href="#what-it-is">What energy-informed design is</a></li>
+                        <li><a href="#what-it-is">What performance-informed design is</a></li>
                         <li><a href="#five-levers">The five levers</a></li>
                         <li><a href="#system-integration">System integration — how the levers couple</a></li>
                     </ol>
@@ -59,12 +59,14 @@
                         <li><a href="#the-loop">The loop that runs every phase</a></li>
                         <li><a href="#pre-design">Pre-design — reading the climate</a></li>
                         <li><a href="#schematic">Schematic — form before envelope</a></li>
+                        <li><a href="#structure">Structure — when embodied is the dominant lever</a></li>
                         <li><a href="#design-development">DD — choosing where impact lives</a></li>
+                        <li><a href="#resilience">Resilience — designing for the climate that's coming</a></li>
                     </ol>
                 </div>
                 <div class="article-toc-section">
                     <p class="article-toc-part"><span>Part III</span>Reference toolkit</p>
-                    <ol start="9">
+                    <ol start="11">
                         <li><a href="#baselines">Baselines and EUI benchmarks</a></li>
                         <li><a href="#wwr">Window-wall ratio: a useful starting point</a></li>
                         <li><a href="#tools-bim">Tools, BIM, and quality control</a></li>
@@ -74,7 +76,7 @@
                 </div>
                 <div class="article-toc-section">
                     <p class="article-toc-part"><span>Part IV</span>Closing</p>
-                    <ol start="14">
+                    <ol start="16">
                         <li><a href="#closing-reflection">A closing reflection</a></li>
                         <li><a href="#sources">Notes &amp; sources</a></li>
                     </ol>
@@ -133,13 +135,13 @@
                 </section>
 
                 <section id="what-it-is" data-reveal>
-                    <h2>What energy-informed design is</h2>
+                    <h2>What performance-informed design is</h2>
 
                     <p>The conventional way energy modeling enters a project is at the end. The architect designs a building; the engineer models its performance; the result is a number for code compliance, a LEED checklist, sometimes a press-friendly EUI claim. The model arrives after the decisions it could have shaped. This is energy modeling as <em>validation</em>.</p>
 
                     <p><strong>Performance-informed integrated design</strong> rearranges that. Performance — energy, comfort, daylight, glare — is queried <em>during</em> design, not after. The numbers don't validate decisions already made; they constrain and generate the decisions themselves. A massing option is judged in part by its predicted EUI. A facade strategy is chosen because the radiation overlay said it had to be. The analysis lives where it can actually change the building.</p>
 
-                    <p>The reason this matters is mechanical, not philosophical:</p>
+                    <p>The reason this matters is practical, not philosophical:</p>
 
                     <figure class="article-figure" data-reveal>
                         <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-influence-title">
@@ -177,7 +179,11 @@
 
                     <p>By the end of schematic design, ~70–80% of a building's energy performance is already determined by massing, orientation, and window-wall ratio. Everything that comes after is refinement around a fixed envelope. So if analysis only enters at DD or later, the building it could most have changed is already gone.</p>
 
-                    <p>There's empirical support for taking early-phase feedback seriously. The MOOSAS research project (Tsinghua, 2020+) ran controlled experiments where designers had access to one-click EUI estimates while massing. Final designs averaged 10–11% lower EUI than the control group. The estimates weren't precise — a fast machine-learning approximator over simulation data. What mattered was that the feedback was <em>present</em> during the act of designing. <strong>In early design, speed and presence beat precision.</strong></p>
+                    <p>The cost of getting this wrong is concrete. A project that runs the loop late — or skips it entirely — typically delivers 30–50% over its EUI target. The mechanical equipment was sized to a baseline envelope that gets value-engineered down post-bid; the chiller ends up two tonnage steps too large, running well below its efficiency point at most operating hours. The retrofit, when it arrives at year ten or fifteen, costs more than the original analysis would have and leaves a building that still misses its targets. Every line in the influence-vs-cost curve above maps to a project somewhere with an avoidable bill.</p>
+
+                    <p>There's empirical support for taking early-phase feedback seriously, though the literature is thin and growing. The most rigorous study to date is MOOSAS (Tsinghua, 2020+), a controlled experiment where designers given one-click EUI estimates during massing produced final designs averaging 10–11% lower EUI than a control group. The estimates weren't precise — a fast machine-learning approximator over simulation data. What mattered was that the feedback was <em>present</em> during the act of designing. <strong>In early design, speed and presence beat precision.</strong></p>
+
+                    <p>The obvious objection — <em>who has time to do this on every project?</em> — is real, and it's the one the article ends on. The method only earns its keep if the loop stays cheap to run, which is a tooling problem more than a methodology one. That constraint shapes everything that follows.</p>
                 </section>
 
                 <section id="five-levers" data-reveal>
@@ -314,7 +320,7 @@
 
                     <p><strong>Systems ↔ systems.</strong> Mechanical efficiency itself isn't a single dial. Decoupling ventilation from thermal conditioning — VRF (variable refrigerant flow) for sensible loads paired with DOAS (dedicated outdoor air system) for ventilation — lets each subsystem run at its own efficiency point and typically saves 15–35% over conventional VAV in many climates. Heat-recovery ventilation captures exhaust heat that would otherwise be lost. Properly-tuned controls — variable-speed pumping, demand-controlled ventilation, optimal-start scheduling — recover another 5–15% with no change to the equipment itself. None of these matters as much as the envelope decision that sized the equipment in the first place; together they compound.</p>
 
-                    <p>The risk in practice is treating these as separate procurements — structure here, envelope there, MEP later. Done in sequence, the project pays once for each lever and never collects the synergy. Done together — the integration the method's name implies — savings on one lever fund or oversize the next.</p>
+                    <p>The risk in practice is treating these as separate procurements — structure here, envelope there, MEP later. Done in sequence, the project pays once for each lever and never collects the synergy. Done together, savings on one lever fund or oversize the next; pursued in isolation, each lever underdelivers what the others would have unlocked.</p>
                 </section>
 
                 <!-- ============ PART II — THE METHOD ============ -->
@@ -360,57 +366,116 @@
                             <text x="130" y="270" font-family="Libre Baskerville, serif" font-style="italic" font-size="12" fill="currentColor" opacity="0.7" text-anchor="middle">Carry forward</text>
                             <text x="130" y="285" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.55" letter-spacing="0.6" text-anchor="middle">into next phase</text>
                         </svg>
-                        <figcaption>Same four moves at every phase. What changes is what you ask, which variables you test, and what counts as a decision worth locking in. The exit arrow on the left is what makes the loop cumulative — every decision becomes a constraint the next phase has to honour.</figcaption>
+                        <figcaption>Same four moves at every phase. What changes is what you ask, which variables you test, and what counts as a decision worth locking in. The exit arrow on the left is what makes the loop cumulative — every decision becomes a constraint the next phase has to honor.</figcaption>
                     </figure>
 
                     <p>The phase below tells you what version of the loop you're running.</p>
 
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Phase</th>
-                                    <th scope="col">Ask</th>
-                                    <th scope="col">Simulate</th>
-                                    <th scope="col">Decide</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Pre-design</strong></td>
-                                    <td>What climate is this? Which orientations matter? What strategies apply?</td>
-                                    <td>Sun path; wind; radiation by sky segment; benefit overlay.</td>
-                                    <td>Orientation principles. Glazing strategy. Passive-strategy short-list.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Schematic</strong></td>
-                                    <td>Which massing performs better? What WWR? Net-zero feasible?</td>
-                                    <td>Shoebox EUI per option; WWR sweep; PV roof potential.</td>
-                                    <td>Massing. Orientation. WWR by face.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Design Development</strong></td>
-                                    <td>Glazing or wall insulation? Where to shade? Which system type?</td>
-                                    <td>Whole-building EUI breakdown; envelope sweeps; system comparison.</td>
-                                    <td>Envelope spec. Shading geometry. HVAC type.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>CDs / VE</strong></td>
-                                    <td>What does this VE option cost in energy? Are we hitting 2030?</td>
-                                    <td>Updated whole-building model; VE alternatives.</td>
-                                    <td>VE acceptance / rejection. Code reporting.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <figure class="article-figure" data-reveal>
+                        <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-phase-strip-title">
+                            <title id="fig-phase-strip-title">The performance-informed loop, phase by phase</title>
 
-                    <p>The four cases below visit one phase each. Each one anonymizes a real project — type, climate zone, region — and shows what the loop produced when run with discipline.</p>
+                            <g font-family="Archivo, sans-serif" font-size="10" fill="currentColor" letter-spacing="1.4" text-anchor="middle" font-weight="500">
+                                <text x="215" y="42">PRE-DESIGN</text>
+                                <text x="365" y="42">SCHEMATIC</text>
+                                <text x="515" y="42">DD</text>
+                                <text x="665" y="42">CD / VE</text>
+                            </g>
+
+                            <line x1="215" y1="60" x2="660" y2="60" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+                            <g fill="currentColor">
+                                <circle cx="215" cy="60" r="4"/>
+                                <circle cx="365" cy="60" r="4"/>
+                                <circle cx="515" cy="60" r="4"/>
+                                <circle cx="665" cy="60" r="4"/>
+                            </g>
+                            <path d="M 656 55 L 672 60 L 656 65" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.7" stroke-linejoin="round"/>
+
+                            <g stroke="currentColor" stroke-width="0.3" opacity="0.12">
+                                <line x1="290" y1="84" x2="290" y2="440"/>
+                                <line x1="440" y1="84" x2="440" y2="440"/>
+                                <line x1="590" y1="84" x2="590" y2="440"/>
+                            </g>
+                            <g stroke="currentColor" stroke-width="0.4" opacity="0.25">
+                                <line x1="140" y1="200" x2="740" y2="200"/>
+                                <line x1="140" y1="320" x2="740" y2="320"/>
+                            </g>
+
+                            <g font-family="Libre Baskerville, serif" font-style="italic" fill="currentColor" text-anchor="end">
+                                <text x="128" y="105" font-size="15">Ask</text>
+                                <text x="128" y="225" font-size="15">Simulate</text>
+                                <text x="128" y="345" font-size="15">Decide</text>
+                            </g>
+                            <g font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="end" letter-spacing="0.4">
+                                <text x="128" y="120">a phase question</text>
+                                <text x="128" y="240">two or three options</text>
+                                <text x="128" y="360">and lock it in</text>
+                            </g>
+
+                            <g font-family="Archivo, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">
+                                <text x="215" y="115">What climate?</text>
+                                <text x="215" y="133">Which orientations?</text>
+                                <text x="215" y="151">Which strategies apply?</text>
+
+                                <text x="365" y="115">Which massing?</text>
+                                <text x="365" y="133">What WWR?</text>
+                                <text x="365" y="151">Net-zero feasible?</text>
+
+                                <text x="515" y="115">Glazing or insulation?</text>
+                                <text x="515" y="133">Where to shade?</text>
+                                <text x="515" y="151">Which system type?</text>
+
+                                <text x="665" y="115">VE energy cost?</text>
+                                <text x="665" y="133">Hitting 2030?</text>
+                            </g>
+
+                            <g font-family="Archivo, sans-serif" font-size="11" fill="currentColor" opacity="0.85" text-anchor="middle">
+                                <text x="215" y="235">Sun path</text>
+                                <text x="215" y="253">Wind</text>
+                                <text x="215" y="271">Radiation by sky</text>
+                                <text x="215" y="289">Benefit overlay</text>
+
+                                <text x="365" y="235">Shoebox EUI</text>
+                                <text x="365" y="253">WWR sweep</text>
+                                <text x="365" y="271">PV roof potential</text>
+
+                                <text x="515" y="235">Whole-building EUI</text>
+                                <text x="515" y="253">Envelope sweeps</text>
+                                <text x="515" y="271">System comparison</text>
+
+                                <text x="665" y="235">Updated model</text>
+                                <text x="665" y="253">VE alternatives</text>
+                            </g>
+
+                            <g font-family="Archivo, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">
+                                <text x="215" y="355">Orientation principles</text>
+                                <text x="215" y="373">Glazing strategy</text>
+                                <text x="215" y="391">Passive short-list</text>
+
+                                <text x="365" y="355">Massing</text>
+                                <text x="365" y="373">Orientation</text>
+                                <text x="365" y="391">WWR by face</text>
+
+                                <text x="515" y="355">Envelope spec</text>
+                                <text x="515" y="373">Shading geometry</text>
+                                <text x="515" y="391">HVAC type</text>
+
+                                <text x="665" y="355">VE accept / reject</text>
+                                <text x="665" y="373">Code reporting</text>
+                            </g>
+
+                            <text x="400" y="455" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.6" font-style="italic">same loop, four phases — each cell is what you actually do at that station of the loop</text>
+                        </svg>
+                        <figcaption>The same Ask / Simulate / Decide loop, instantiated at each phase. The questions sharpen as the project narrows; the variables tested change; what counts as a decision worth locking in changes. The loop's structure stays the same.</figcaption>
+                    </figure>
+
+                    <p>The cases below — three projects across three phases — each anonymize a real engagement and show what the loop produced when run with discipline.</p>
                 </section>
 
                 <section id="pre-design" data-reveal>
                     <h2>Pre-design — reading the climate</h2>
 
-                    <p>The phase before drawing begins. With orientation, openings, and shading still soft, the work is to read the site's climate into a small set of testable principles — where solar gain helps, where it harms, how the sky distributes radiation across the year. Everything that follows either honours those principles or knowingly overrides them.</p>
+                    <p>The phase before drawing begins. With orientation, openings, and shading still soft, the work is to read the site's climate into a small set of testable principles — where solar gain helps, where it harms, how the sky distributes radiation across the year. Everything that follows either honors those principles or knowingly overrides them.</p>
 
                     <p class="article-case-meta">Case: a campus wellness &amp; recreation center · CZ 5A · Hartford, CT</p>
 
@@ -418,23 +483,23 @@
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/01-radiation-sky-segment.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/01-radiation-sky-segment.jpg" alt="Total radiation by sky segment for Hartford, CT — concentric polar diagram with intensity bands, showing high-radiation zones at low south angles." loading="lazy" decoding="async" width="1600" height="633">
+                            <source srcset="../images/research/performance-informed-design/01-radiation-sky-segment.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/01-radiation-sky-segment.jpg" alt="Total radiation by sky segment for Hartford, CT — concentric polar diagram with intensity bands, showing high-radiation zones at low south angles." loading="lazy" decoding="async" width="1600" height="633">
                         </picture>
                         <figcaption>Total annual radiation decomposed by sky segment, Hartford, CT. The polar plot shows where the year's solar energy actually comes from — concentrated in the low-south band, with measurable east-southeast contribution that influenced the project's main-entry orientation.</figcaption>
                     </figure>
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/02-radiation-benefit.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/02-radiation-benefit.jpg" alt="Radiation benefit analysis — sky-dome diagram separating beneficial winter solar gain from non-beneficial summer heat gain." loading="lazy" decoding="async" width="1600" height="696">
+                            <source srcset="../images/research/performance-informed-design/02-radiation-benefit.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/02-radiation-benefit.jpg" alt="Radiation benefit analysis — sky-dome diagram separating beneficial winter solar gain from non-beneficial summer heat gain." loading="lazy" decoding="async" width="1600" height="696">
                         </picture>
-                        <figcaption>The same sky dome, re-coloured by whether radiation is beneficial (cold-blue, winter-heating) or non-beneficial (warm-red, summer-cooling-load). Reading the two diagrams together produces a glazing strategy that maximises winter gain and rejects summer high-angle sun in the same gesture.</figcaption>
+                        <figcaption>The same sky dome, re-colored by whether radiation is beneficial (cold-blue, winter-heating) or non-beneficial (warm-red, summer-cooling-load). Reading the two diagrams together produces a glazing strategy that maximizes winter gain and rejects summer high-angle sun in the same gesture.</figcaption>
                     </figure>
 
                     <p>Two diagrams, one decision package. The first told the project where energy is. The second told it which energy to want. The result was a precise, defensible orientation strategy entering schematic: south transparency for winter heating gain, overhangs sized to reject summer high-angle sun, west-facing glass restricted to its cold-season needs only.</p>
 
-                    <p>The lesson generalizes. Pre-design analysis isn't abstract climate documentation. It produces specific, testable orientation and shading principles that the rest of the project then has to honour or explicitly override — and either way, the override is informed.</p>
+                    <p>The lesson generalizes. Pre-design analysis isn't abstract climate documentation. It produces specific, testable orientation and shading principles that the rest of the project then has to honor or explicitly override — and either way, the override is informed.</p>
                 </section>
 
                 <section id="schematic" data-reveal>
@@ -448,16 +513,16 @@
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/03-massing-energy.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/03-massing-energy.jpg" alt="Three massing options compared by energy use intensity. Option 1: 33.55 EUI baseline. Option 2: 30.89 EUI, 8% less. Option 3: 28.84 EUI, 14% less." loading="lazy" decoding="async" width="1600" height="642">
+                            <source srcset="../images/research/performance-informed-design/03-massing-energy.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/03-massing-energy.jpg" alt="Three massing options compared by energy use intensity. Option 1: 33.55 EUI baseline. Option 2: 30.89 EUI, 8% less. Option 3: 28.84 EUI, 14% less." loading="lazy" decoding="async" width="1600" height="642">
                         </picture>
                         <figcaption>Three massings, identical envelope assumptions. Linear bar (Option 1): 33.55 kBtu/sf/yr. Carved courtyard (Option 2): 30.89, 8% less. Stepped form with shaded terraces (Option 3): 28.84, 14% less.</figcaption>
                     </figure>
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/04-massing-ase.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/04-massing-ase.jpg" alt="Annual sunlight exposure analysis — Option 1 vs Option 2 floor plates colored by glare risk. Option 1: 18% ASE total. Option 2: 12% ASE total." loading="lazy" decoding="async" width="1600" height="897">
+                            <source srcset="../images/research/performance-informed-design/04-massing-ase.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/04-massing-ase.jpg" alt="Annual sunlight exposure analysis — Option 1 vs Option 2 floor plates colored by glare risk. Option 1: 18% ASE total. Option 2: 12% ASE total." loading="lazy" decoding="async" width="1600" height="897">
                         </picture>
                         <figcaption>Annual sunlight exposure (ASE), a glare-risk proxy. Option 1: 18% of floor area exposed. Optimised form: 12%. The 6% delta lands on visual comfort; the cooling-load delta (above) lands on EUI. The same form change pays into both.</figcaption>
                     </figure>
@@ -465,6 +530,65 @@
                     <p>Locked in by end of schematic: 14% energy reduction, 6% glare reduction. Before a single envelope choice was made.</p>
 
                     <p>This is the difference between letting form follow program and letting form follow analysis. The envelope that comes after the schematic decision now has 14% less load to deliver and 6% less glare to mitigate. Every glazing R-value, every shading depth, every system size benefits from a starting point that was already chosen with performance in mind. Form is the lever with the highest leverage in any phase. The schematic question isn't whether to use it. It's whether to ask it to do work or not.</p>
+                </section>
+
+                <section id="structure" data-reveal>
+                    <h2>Structure — when embodied is the dominant lever</h2>
+
+                    <p>Climate, form, envelope, and systems are operational levers. They shape how much energy the building uses while it runs. The frame is different. It's almost entirely an embodied-carbon decision, paid up front and recovered (or not) over the life of the building. On projects where operational EUI is already pulled down toward 2030 targets, the frame becomes the dominant lever for total carbon impact — and the only one whose answer doesn't get better over time.</p>
+
+                    <p>The shape of the structural choice is well documented. Aggregating A1–A5 (cradle-to-practical-completion) embodied-carbon results from Athena Sustainable Materials Institute, WoodWorks, RMI, and the EC3 database produces a consistent ranking across mid-rise commercial typologies:</p>
+
+                    <figure class="article-figure" data-reveal>
+                        <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-structure-carbon-title">
+                            <title id="fig-structure-carbon-title">Structural systems compared by A1–A5 embodied carbon</title>
+
+                            <g stroke="currentColor" stroke-width="0.3" opacity="0.10">
+                                <line x1="240" y1="60" x2="240" y2="240"/>
+                                <line x1="380" y1="60" x2="380" y2="240"/>
+                                <line x1="520" y1="60" x2="520" y2="240"/>
+                                <line x1="660" y1="60" x2="660" y2="240"/>
+                            </g>
+                            <g stroke="currentColor" stroke-width="0.5" opacity="0.4">
+                                <line x1="240" y1="240" x2="740" y2="240"/>
+                            </g>
+
+                            <text x="240" y="258" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.4">0</text>
+                            <text x="380" y="258" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.4">150</text>
+                            <text x="520" y="258" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.4">300</text>
+                            <text x="660" y="258" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="middle" letter-spacing="0.4">450</text>
+                            <text x="490" y="278" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="1.2">A1–A5 EMBODIED CARBON · kgCO₂e/m²</text>
+
+                            <text x="230" y="92" font-family="Libre Baskerville, serif" font-size="13" fill="currentColor" text-anchor="end">Concrete + steel</text>
+                            <text x="230" y="108" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="end" letter-spacing="0.4">baseline</text>
+                            <rect x="240" y="80" width="448" height="22" fill="currentColor" opacity="0.85"/>
+                            <text x="700" y="96" font-family="Libre Baskerville, serif" font-size="12" fill="currentColor">~480</text>
+
+                            <text x="230" y="156" font-family="Libre Baskerville, serif" font-size="13" fill="currentColor" text-anchor="end">Hybrid mass timber</text>
+                            <text x="230" y="172" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="end" letter-spacing="0.4">CLT slabs · glulam columns · concrete podium</text>
+                            <rect x="240" y="144" width="252" height="22" fill="currentColor" opacity="0.55"/>
+                            <text x="504" y="160" font-family="Libre Baskerville, serif" font-size="12" fill="currentColor">~270</text>
+
+                            <text x="230" y="220" font-family="Libre Baskerville, serif" font-size="13" fill="currentColor" text-anchor="end">Full mass timber</text>
+                            <text x="230" y="236" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="end" letter-spacing="0.4">where code permitted</text>
+                            <rect x="240" y="208" width="196" height="22" fill="currentColor" opacity="0.35"/>
+                            <text x="448" y="224" font-family="Libre Baskerville, serif" font-size="12" fill="currentColor">~210</text>
+
+                            <line x1="688" y1="80" x2="688" y2="240" stroke="currentColor" stroke-width="0.4" opacity="0.4" stroke-dasharray="3 3"/>
+                            <text x="694" y="76" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" letter-spacing="0.4">baseline</text>
+                        </svg>
+                        <figcaption>A1–A5 embodied carbon by structural system for a typical mid-rise commercial building, drawn from published LCA aggregates. Concrete-and-steel baseline: ~480 kgCO₂e/m². Hybrid mass timber (CLT slabs on glulam columns over a concrete podium): ~270, a 44% reduction. Full mass timber where code permits: ~210, a 56% reduction. Specific values vary with span, fire rating, mill source, and concrete mix; the relative ranking is consistent across studies.</figcaption>
+                    </figure>
+
+                    <p>The structural choice ripples beyond the carbon line item. Three downstream couplings recur across the literature:</p>
+
+                    <p><strong>Lower thermal mass.</strong> Timber's heat capacity is roughly half that of concrete. Night-purge and free-cooling strategies that work in concrete-frame buildings don't carry over directly. The cooling strategy shifts toward a tighter envelope and active heat recovery — operational-side adjustments to compensate for what the structure no longer provides.</p>
+
+                    <p><strong>Lighter foundations.</strong> A mass-timber superstructure typically sheds 25–40% of dead load. Foundation sizes drop, which both reduces concrete volume (more embodied savings beyond the frame line item) and frees structural budget that can fund a meaningful envelope upgrade.</p>
+
+                    <p><strong>Single-pass material.</strong> Fire-rated CLT exposed in interior soffits and walls can serve as both finish and structure — a small but real reduction in interior fit-out scope and embodied impact.</p>
+
+                    <p>The lesson is that the operational levers are necessary but bounded. Once envelope and systems are pulled toward 2030 targets, embodied dominates the remaining lifetime impact. The structural decision — usually treated as the engineer's domain, made under cost-and-program pressure with little carbon visibility — turns out to be the largest single carbon decision in the project. Bringing it inside the loop, at SD, is what makes that obvious in time to act on it.</p>
                 </section>
 
                 <section id="design-development" data-reveal>
@@ -478,16 +602,16 @@
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/05-strategy-comparison.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/05-strategy-comparison.jpg" alt="Four energy reduction strategies compared. Baseline 69.14 EUI. Plus shading 70.17 (1.5% worse). Plus VRF 42.87 (38% reduction). Plus reduced balconies 68.65 (0.7% reduction)." loading="lazy" decoding="async" width="1600" height="905">
+                            <source srcset="../images/research/performance-informed-design/05-strategy-comparison.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/05-strategy-comparison.jpg" alt="Four energy reduction strategies compared. Baseline 69.14 EUI. Plus shading 70.17 (1.5% worse). Plus VRF 42.87 (38% reduction). Plus reduced balconies 68.65 (0.7% reduction)." loading="lazy" decoding="async" width="1600" height="905">
                         </picture>
                         <figcaption>Four scenarios against the same baseline. Adding 2.5' V+H shading: <em>worsens</em> EUI by 1.5%. Reducing balconies: 0.7% better. Switching VAV to VRF: 38% reduction. In a hot-dry climate, mechanical efficiency is the lever that moves the needle.</figcaption>
                     </figure>
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/06-shading-configs.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/06-shading-configs.jpg" alt="Six shading configurations tested: baseline, 1' horizontal, 2' horizontal, 2.5' horizontal, 2.5' vertical, 2.5' L-shape." loading="lazy" decoding="async" width="1600" height="712">
+                            <source srcset="../images/research/performance-informed-design/06-shading-configs.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/06-shading-configs.jpg" alt="Six shading configurations tested: baseline, 1' horizontal, 2' horizontal, 2.5' horizontal, 2.5' vertical, 2.5' L-shape." loading="lazy" decoding="async" width="1600" height="712">
                         </picture>
                         <figcaption>Six shading geometries tested, including L-shape combinations. None moved EUI by more than 1–2%. The shading lever exists in this climate; it's just not where the energy is.</figcaption>
                     </figure>
@@ -500,29 +624,102 @@
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/08-orientation-radiation.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/08-orientation-radiation.jpg" alt="Urban-scale solar radiation analysis of the project's south-southwest facing facades, color-mapped from low-heat blue to high-heat red." loading="lazy" decoding="async" width="1600" height="527">
+                            <source srcset="../images/research/performance-informed-design/08-orientation-radiation.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/08-orientation-radiation.jpg" alt="Urban-scale solar radiation analysis of the project's south-southwest facing facades, color-mapped from low-heat blue to high-heat red." loading="lazy" decoding="async" width="1600" height="527">
                         </picture>
                         <figcaption>Site-scale solar radiation, S-SW facing. The highest-radiation surfaces concentrate on south-southwest envelopes — the orientation driving the cooling load. The map gave the project a target for where shading had to live.</figcaption>
                     </figure>
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/07-shading-radiation.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/07-shading-radiation.jpg" alt="Radiation analysis comparing baseline to 2.5-foot L-shape shading on high-rise and low-rise volumes. High-rise: 28% to 19% high-heat area. Low-rise: 28% to 18%." loading="lazy" decoding="async" width="1600" height="1064">
+                            <source srcset="../images/research/performance-informed-design/07-shading-radiation.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/07-shading-radiation.jpg" alt="Radiation analysis comparing baseline to 2.5-foot L-shape shading on high-rise and low-rise volumes. High-rise: 28% to 19% high-heat area. Low-rise: 28% to 18%." loading="lazy" decoding="async" width="1600" height="1064">
                         </picture>
                         <figcaption>Baseline vs. 2.5' L-shape shading on both the high-rise and low-rise volumes. High-heat surface area drops from 28% to 19% on the high-rise and 28% to 18% on the low-rise — the same intervention working at two scales of the same project.</figcaption>
                     </figure>
 
                     <figure class="article-figure" data-reveal>
                         <picture>
-                            <source srcset="../images/research/energy-informed-design/09-shading-effectiveness.avif" type="image/avif">
-                            <img src="../images/research/energy-informed-design/09-shading-effectiveness.jpg" alt="Highest-gain facade with and without shading. Without shades: 73 kWh/m². With shades: 49 kWh/m². 33% solar radiation reduction." loading="lazy" decoding="async" width="1600" height="633">
+                            <source srcset="../images/research/performance-informed-design/09-shading-effectiveness.avif" type="image/avif">
+                            <img src="../images/research/performance-informed-design/09-shading-effectiveness.jpg" alt="Highest-gain facade with and without shading. Without shades: 73 kWh/m². With shades: 49 kWh/m². 33% solar radiation reduction." loading="lazy" decoding="async" width="1600" height="633">
                         </picture>
                         <figcaption>Zooming into the highest-gain facade: 73 kWh/m² without shading, 49 with. A 33% reduction at the surface where it matters most. Secondary facades reached 14–19%. The lever paid off here — just at the scale of facade radiation, not whole-building EUI.</figcaption>
                     </figure>
 
                     <p>The lesson is the same shape every time. Each climate has a dominant load, and each lever has a scale at which it actually works. The lever that drives EUI in one climate trims facade radiation in another; the lever that intuition reaches for first sometimes does neither. Without the comparative analysis, instinct said <em>shade the windows</em> in Vegas — and instinct would have built the wrong building. The method's job at DD is to test the assumption before it becomes a specification.</p>
+                </section>
+
+                <section id="resilience" data-reveal>
+                    <h2>Resilience — designing for the climate that's coming</h2>
+
+                    <p>Resilience isn't a fifth phase. It's the same comparisons re-run with the climate file projected to 2050 and 2080 — sometimes producing a different decision, more often producing a stronger case for the one the present-day analysis already recommended. A specification that pencils out today should pencil harder, not weaker, against the climate the building will actually operate in.</p>
+
+                    <p class="article-case-meta">Same project, projected forward: senior-living community · CZ 9 · Woodland Hills, CA</p>
+
+                    <p>The Woodland Hills shading study above was run twice. First with the current TMY weather file. Then with the same file morphed against IPCC mid-century and end-of-century projections, using the WeatherShift / Meteonorm approach. The cooling problem the shading is sized to address is not going to ease over the building's service life.</p>
+
+                    <figure class="article-figure" data-reveal>
+                        <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-climate-trend-title">
+                            <title id="fig-climate-trend-title">Annual thermal-hour distribution under current, 2050, and 2080 climate</title>
+
+                            <g stroke="currentColor" stroke-width="0.3" opacity="0.10">
+                                <line x1="100" y1="115" x2="740" y2="115"/>
+                                <line x1="100" y1="170" x2="740" y2="170"/>
+                                <line x1="100" y1="225" x2="740" y2="225"/>
+                            </g>
+                            <g stroke="currentColor" stroke-width="0.5" opacity="0.4">
+                                <line x1="100" y1="60" x2="100" y2="280"/>
+                                <line x1="100" y1="280" x2="740" y2="280"/>
+                            </g>
+                            <g font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.55" text-anchor="end">
+                                <text x="92" y="63">100%</text>
+                                <text x="92" y="118">75%</text>
+                                <text x="92" y="173">50%</text>
+                                <text x="92" y="228">25%</text>
+                                <text x="92" y="283">0%</text>
+                            </g>
+
+                            <g>
+                                <rect x="200" y="269" width="80" height="11" fill="currentColor" opacity="0.85"/>
+                                <rect x="200" y="93" width="80" height="176" fill="currentColor" opacity="0.18"/>
+                                <rect x="200" y="60" width="80" height="33" fill="currentColor" opacity="0.45"/>
+                                <text x="240" y="305" font-family="Libre Baskerville, serif" font-size="14" fill="currentColor" text-anchor="middle">Current</text>
+                                <text x="240" y="50" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.65" text-anchor="middle" letter-spacing="0.4">5% heat · 15% cold</text>
+                            </g>
+
+                            <g>
+                                <rect x="380" y="256" width="80" height="24" fill="currentColor" opacity="0.85"/>
+                                <rect x="380" y="78" width="80" height="178" fill="currentColor" opacity="0.18"/>
+                                <rect x="380" y="60" width="80" height="18" fill="currentColor" opacity="0.45"/>
+                                <text x="420" y="305" font-family="Libre Baskerville, serif" font-size="14" fill="currentColor" text-anchor="middle">2050</text>
+                                <text x="420" y="50" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.65" text-anchor="middle" letter-spacing="0.4">11% heat · 8% cold</text>
+                            </g>
+
+                            <g>
+                                <rect x="560" y="245" width="80" height="35" fill="currentColor" opacity="0.85"/>
+                                <rect x="560" y="64" width="80" height="181" fill="currentColor" opacity="0.18"/>
+                                <rect x="560" y="60" width="80" height="4" fill="currentColor" opacity="0.45"/>
+                                <text x="600" y="305" font-family="Libre Baskerville, serif" font-size="14" fill="currentColor" text-anchor="middle">2080</text>
+                                <text x="600" y="50" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.65" text-anchor="middle" letter-spacing="0.4">16% heat · 2% cold</text>
+                            </g>
+
+                            <path d="M 280 274 L 380 268 L 460 268 L 560 263" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.4" stroke-dasharray="3 3"/>
+
+                            <g transform="translate(140, 333)" font-family="Archivo, sans-serif" font-size="10" letter-spacing="0.4">
+                                <rect width="14" height="10" fill="currentColor" fill-opacity="0.85"/>
+                                <text x="20" y="9" fill="currentColor" opacity="0.7">heat-stress hours</text>
+                                <rect x="170" width="14" height="10" fill="currentColor" fill-opacity="0.18"/>
+                                <text x="190" y="9" fill="currentColor" opacity="0.7">thermal comfort</text>
+                                <rect x="335" width="14" height="10" fill="currentColor" fill-opacity="0.45"/>
+                                <text x="355" y="9" fill="currentColor" opacity="0.7">cold-stress hours</text>
+                            </g>
+                        </svg>
+                        <figcaption>Annual thermal-hour distribution for the same site under current, 2050, and 2080 climate. Heat-stress hours roughly double by 2050 and triple by 2080. Cold-stress hours collapse from 15% to near zero. The building's heating problem is going away; its cooling problem is not.</figcaption>
+                    </figure>
+
+                    <p>Read together with the present-day shading numbers, the specification stops being a present-day cost-benefit calculation. Today's 33% radiation reduction is doing modest work in 2025. By 2050 it is doing twice that work. By 2080 it is doing three times. The same component, against a climate the building actually operates in.</p>
+
+                    <p>The point isn't that resilience modeling produces a different design — sometimes it does, but more often, it produces a stronger <em>case</em> for the design analysis already recommended. It tells the project (and the client signing the cheque) that the cooling-load investment is being made for forty cooling seasons, not one.</p>
                 </section>
 
                 <!-- ============ PART III — REFERENCE TOOLKIT ============ -->
@@ -531,7 +728,7 @@
                     <p class="article-part-label"><span class="article-part-num">Part III</span><span class="article-part-name">Reference toolkit</span></p>
                     <h2>Reference toolkit</h2>
 
-                    <p>The four sections above describe what the method does. The four short sub-sections below are the operational details — baselines, benchmarks, working from BIM, and the boundary between in-house and engaged-MEP work. They're a working reference, not part of the argument.</p>
+                    <p>The sections above describe what the method does. The short sub-sections below are operational notes — baselines, benchmarks, working from BIM, the boundary between in-house and engaged MEP, and common pitfalls — to reach for when a specific question lands.</p>
 
                     <h3 id="baselines">Baselines and EUI benchmarks</h3>
 
@@ -686,7 +883,7 @@
 
                     <p>That's the research direction I'm working in: a live design-intelligence layer beside floor area and program data inside Rhino, surfacing performance-relevant metrics — WWR by orientation, façade exposure, EUI range against the 2030 target — as the geometry changes. Not a replacement for COVE.TOOL or full MEP simulation. A companion that closes the gap between modelling and thinking about performance, so the two stop being separate activities.</p>
 
-                    <p>The four cases above show what disciplined analysis looks like at each phase, given today's tools. The next step is to make the discipline cheap enough that no project skips it.</p>
+                    <p>The cases above show what disciplined analysis looks like at each phase, given today's tools. The next step is to make the discipline cheap enough that no project skips it.</p>
                 </section>
 
                 <section id="sources" data-reveal>
@@ -702,6 +899,8 @@
                         <li><strong>Operational vs embodied lifetime split.</strong> Indicative figures derived from the <a href="https://carbonleadershipforum.org" target="_blank" rel="noopener">Carbon Leadership Forum</a> embodied-carbon datasets, Athena Sustainable Materials Institute cradle-to-gate LCA studies (<em>A Cradle-to-Gate LCA of Cross-Laminated Timber</em>), and <a href="https://www.eia.gov/consumption/commercial/" target="_blank" rel="noopener">CBECS 2018</a> operational EUI medians.</li>
 
                         <li><strong>Mass timber 25–60% lower embodied carbon than concrete or steel.</strong> Athena Sustainable Materials Institute LCA studies; <a href="https://www.woodworks.org" target="_blank" rel="noopener">WoodWorks</a> <em>Mass Timber LCA</em> reports; RMI <em>Driving Action on Embodied Carbon in Buildings</em>.</li>
+
+                        <li><strong>Structural-system A1–A5 carbon comparisons (concrete vs hybrid timber vs full timber).</strong> Project-specific values were generated using the <a href="https://buildingtransparency.org/ec3" target="_blank" rel="noopener">EC3 (Embodied Carbon in Construction Calculator)</a> against the structural engineer's takeoff. Reported figures are illustrative ranges — actual projects vary with span, fire rating, mill source, and concrete mix.</li>
 
                         <li><strong>VRF + DOAS efficiency vs conventional VAV (15–35%).</strong> US Department of Energy Building Technologies Office assessments; ASHRAE 90.1 Appendix G modelling; published manufacturer studies (Daikin, Mitsubishi).</li>
 
