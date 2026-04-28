@@ -1178,6 +1178,13 @@ section:first-of-type .article-part-label {
     overflow: visible;
 }
 
+.article-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
 .article-figure figcaption {
     font-size: 12px;
     line-height: 1.6;
