@@ -47,7 +47,7 @@
                 <div class="article-toc-section">
                     <p class="article-toc-part"><span>Part I</span>The argument</p>
                     <ol>
-                        <li><a href="#operational-embodied">Operational vs embodied — the energy we mean</a></li>
+                        <li><a href="#operational-embodied">Operational vs embodied — the carbon we mean</a></li>
                         <li><a href="#what-it-is">What performance-informed design is</a></li>
                         <li><a href="#five-levers">The five levers</a></li>
                         <li><a href="#system-integration">System integration — how the levers couple</a></li>
@@ -90,46 +90,46 @@
 
                 <section id="operational-embodied" data-reveal>
                     <p class="article-part-label"><span class="article-part-num">Part I</span><span class="article-part-name">The argument</span></p>
-                    <h2>Operational vs embodied — the energy we mean</h2>
+                    <h2>Operational vs embodied — the carbon we mean</h2>
 
-                    <p>When a project says "low energy," it usually means one of two things, and the difference matters for how design treats them.</p>
+                    <p>When a project says "low carbon," it usually means one of two things, and the difference matters for how design treats them.</p>
 
-                    <p><strong>Operational energy</strong> is what the building uses while running — heating, cooling, lighting, equipment, hot water — summed over each year of service. It is the number on the utility bill and the basis of EUI, ASHRAE 90.1, the 2030 Challenge, and most certifications.</p>
+                    <p><strong>Operational carbon</strong> is what the building emits while running — heating, cooling, lighting, equipment, hot water — measured each year and summed over the building's service life. It tracks operational energy use multiplied by the grid's carbon factor; as the grid decarbonizes, the same EUI emits less carbon.</p>
 
-                    <p><strong>Embodied energy</strong> is what the project spent before it ever turned on: extracting and processing materials, manufacturing components, transport, construction, eventual demolition. It is paid in carbon up front and sits in the structure for the rest of the building's life.</p>
+                    <p><strong>Embodied carbon</strong> is what the project emitted before the building ever turned on: extracting and processing materials, manufacturing components, transport, construction. It is paid up front and sits in the structure for the rest of the building's life.</p>
 
-                    <p>Until recently, operational dominated the lifetime balance by an order of magnitude. Decades of code progress have changed the ratio. As envelopes tighten and equipment improves, embodied carbon's share of total impact rises — to the point that a net-zero-operations building with a conventional concrete-and-steel structure can spend its first thirty years paying back the carbon it took to build.</p>
+                    <p>Until recently, operational dominated the lifetime balance by an order of magnitude. Decades of code progress and grid decarbonization have changed the ratio. As envelopes tighten, equipment improves, and the grid cleans up, embodied carbon's share of total lifetime impact rises — to the point that a high-performance building with a conventional concrete-and-steel structure can spend its first thirty years of avoided operational carbon just paying back what it took to build.</p>
 
                     <figure class="article-figure" data-reveal>
-                        <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-energy-balance-title">
-                            <title id="fig-energy-balance-title">Operational vs embodied energy across building generations</title>
+                        <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-carbon-balance-title">
+                            <title id="fig-carbon-balance-title">Operational vs embodied carbon across building generations</title>
 
                             <text x="130" y="68" font-family="Libre Baskerville, serif" font-size="14" fill="currentColor">1990s code-min office</text>
-                            <text x="130" y="84" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.6" letter-spacing="0.6">concrete frame · 50-year lifetime</text>
+                            <text x="130" y="84" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.6" letter-spacing="0.6">concrete frame · 50-yr operational (grid-weighted) + A1–A5 embodied</text>
 
-                            <rect x="130" y="100" width="370" height="48" fill="currentColor" opacity="0.18"/>
-                            <rect x="500" y="100" width="150" height="48" fill="currentColor" opacity="0.85"/>
-                            <text x="315" y="129" font-family="Libre Baskerville, serif" font-size="13" fill="currentColor" text-anchor="middle">Operational</text>
-                            <text x="315" y="170" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">71% · ~3,750 kBtu/sf</text>
-                            <text x="575" y="129" font-family="Libre Baskerville, serif" font-size="13" fill="#fbf8f2" text-anchor="middle">Embodied</text>
-                            <text x="575" y="170" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">29% · ~1,500 kBtu/sf</text>
+                            <rect x="130" y="100" width="525" height="48" fill="currentColor" opacity="0.18"/>
+                            <rect x="655" y="100" width="75" height="48" fill="currentColor" opacity="0.85"/>
+                            <text x="392" y="129" font-family="Libre Baskerville, serif" font-size="13" fill="currentColor" text-anchor="middle">Operational</text>
+                            <text x="392" y="170" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">88% · ~3,500 kgCO₂e/m²</text>
+                            <text x="692" y="129" font-family="Libre Baskerville, serif" font-size="12" fill="#fbf8f2" text-anchor="middle">Emb.</text>
+                            <text x="692" y="170" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">12% · ~500</text>
 
                             <text x="130" y="220" font-family="Libre Baskerville, serif" font-size="14" fill="currentColor">2030 high-performance office</text>
-                            <text x="130" y="236" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.6" letter-spacing="0.6">same materials, tighter envelope + better systems</text>
+                            <text x="130" y="236" font-family="Archivo, sans-serif" font-size="9" fill="currentColor" opacity="0.6" letter-spacing="0.6">same materials, tighter envelope + better systems + decarbonized grid</text>
 
-                            <rect x="130" y="252" width="100" height="48" fill="currentColor" opacity="0.18"/>
-                            <rect x="230" y="252" width="150" height="48" fill="currentColor" opacity="0.85"/>
-                            <text x="180" y="281" font-family="Libre Baskerville, serif" font-size="12" fill="currentColor" text-anchor="middle">Op.</text>
-                            <text x="180" y="322" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">40% · ~1,000 kBtu/sf</text>
-                            <text x="305" y="281" font-family="Libre Baskerville, serif" font-size="13" fill="#fbf8f2" text-anchor="middle">Embodied</text>
-                            <text x="305" y="322" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">60% · ~1,500 kBtu/sf</text>
+                            <rect x="130" y="252" width="75" height="48" fill="currentColor" opacity="0.18"/>
+                            <rect x="205" y="252" width="75" height="48" fill="currentColor" opacity="0.85"/>
+                            <text x="167" y="281" font-family="Libre Baskerville, serif" font-size="12" fill="currentColor" text-anchor="middle">Op.</text>
+                            <text x="167" y="322" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">50% · ~500</text>
+                            <text x="242" y="281" font-family="Libre Baskerville, serif" font-size="12" fill="#fbf8f2" text-anchor="middle">Emb.</text>
+                            <text x="242" y="322" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.7" text-anchor="middle" letter-spacing="0.4">50% · ~500</text>
 
-                            <line x1="500" y1="148" x2="230" y2="252" stroke="currentColor" stroke-width="0.5" opacity="0.28" stroke-dasharray="3 3"/>
-                            <line x1="650" y1="148" x2="380" y2="252" stroke="currentColor" stroke-width="0.5" opacity="0.28" stroke-dasharray="3 3"/>
+                            <line x1="655" y1="148" x2="205" y2="252" stroke="currentColor" stroke-width="0.5" opacity="0.28" stroke-dasharray="3 3"/>
+                            <line x1="730" y1="148" x2="280" y2="252" stroke="currentColor" stroke-width="0.5" opacity="0.28" stroke-dasharray="3 3"/>
 
-                            <text x="130" y="350" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.55" letter-spacing="0.4" font-style="italic">Operational shrinks with code progress; embodied stays roughly fixed for the same structure type — its share grows.</text>
+                            <text x="130" y="350" font-family="Archivo, sans-serif" font-size="10" fill="currentColor" opacity="0.55" letter-spacing="0.4" font-style="italic">Operational shrinks with code progress and grid decarbonization; embodied stays roughly fixed for the same structure — its share grows.</text>
                         </svg>
-                        <figcaption>The shift in balance. Operational energy drops dramatically as envelopes tighten and systems improve; the embodied carbon of a concrete-and-steel frame stays put. By the time a project is hitting 2030 targets on operational, the structure decision is doing more than half the lifetime work.</figcaption>
+                        <figcaption>The shift in balance. Operational carbon drops sharply as envelopes tighten, systems improve, and the grid cleans up; the embodied carbon of a concrete-and-steel frame stays put. By the time a project is hitting 2030 targets on operational, the structure decision is doing as much lifetime work as everything else combined. Numbers are indicative; embodied is A1–A5 cradle-to-practical-completion, operational is 50-year sum with grid-decarbonization curve.</figcaption>
                     </figure>
 
                     <p>Most of what follows is about operational. That is where the design loop, the five levers, and the cases live — and where today's design feedback is fastest. But several decisions ripple into embodied — particularly structure, envelope thickness, and the size of the mechanical system the envelope dictates. Where those couplings matter, the article flags them.</p>
@@ -911,7 +911,7 @@
 
                         <li><strong>MOOSAS — 10–11% lower EUI with one-click estimates during massing.</strong> Lin, B., Chen, H., Yu, Q., et al., <em>MOOSAS — A systematic solution for multiple objective building performance optimization in the early design stage</em>, Tsinghua University, published in <em>Building and Environment</em> (2018) and ongoing research.</li>
 
-                        <li><strong>Operational vs embodied lifetime split.</strong> Indicative figures derived from the <a href="https://carbonleadershipforum.org" target="_blank" rel="noopener">Carbon Leadership Forum</a> embodied-carbon datasets, Athena Sustainable Materials Institute cradle-to-gate LCA studies (<em>A Cradle-to-Gate LCA of Cross-Laminated Timber</em>), and <a href="https://www.eia.gov/consumption/commercial/" target="_blank" rel="noopener">CBECS 2018</a> operational EUI medians.</li>
+                        <li><strong>Operational vs embodied lifetime split.</strong> Indicative figures, in kgCO₂e/m². <em>Embodied</em> uses A1–A5 cradle-to-practical-completion values for a typical concrete-and-steel commercial frame (~500 kgCO₂e/m²), drawn from the <a href="https://carbonleadershipforum.org" target="_blank" rel="noopener">Carbon Leadership Forum</a> embodied-carbon datasets and Athena Sustainable Materials Institute LCA studies. <em>Operational</em> is a 50-year sum of EUI × grid carbon factor, with the grid's average factor stepped down from ~0.30 to ~0.05 kgCO₂e/kWh across the building's life to reflect projected decarbonization. 1990s baseline EUI taken from <a href="https://www.eia.gov/consumption/commercial/" target="_blank" rel="noopener">CBECS 2018</a> medians; 2030 high-performance EUI from Architecture 2030's net-zero-ready targets. Numbers are illustrative ranges.</li>
 
                         <li><strong>Mass timber 25–60% lower embodied carbon than concrete or steel.</strong> Athena Sustainable Materials Institute LCA studies; <a href="https://www.woodworks.org" target="_blank" rel="noopener">WoodWorks</a> <em>Mass Timber LCA</em> reports; RMI <em>Driving Action on Embodied Carbon in Buildings</em>.</li>
 
