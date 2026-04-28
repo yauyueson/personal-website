@@ -789,11 +789,19 @@ button:focus-visible {
 
 /* Inline TOC */
 .article-toc {
-    max-width: 1000px;
+    max-width: 760px;
     margin: 48px auto 64px;
-    padding: 32px 40px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    padding: 36px 44px;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
+    display: block;
+    column-count: 1;
+    columns: auto;
+}
+
+.article-toc-section {
+    display: block;
+    break-inside: avoid;
 }
 
 .article-toc-label {
@@ -801,21 +809,41 @@ button:focus-visible {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-muted);
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+}
+
+.article-toc-section + .article-toc-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.article-toc-part {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--text);
+    margin: 0 0 16px;
+}
+
+.article-toc-part span {
+    color: var(--text-muted);
+    margin-right: 12px;
+    letter-spacing: 0.32em;
 }
 
 .article-toc ol {
     list-style: decimal-leading-zero;
     padding-left: 2.5em;
-    columns: 2;
-    column-gap: 48px;
+    margin: 0;
 }
 
 .article-toc li {
     font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    break-inside: avoid;
+    line-height: 1.7;
+    margin-bottom: 8px;
     color: var(--text-muted);
 }
 
@@ -1085,6 +1113,152 @@ button:focus-visible {
     margin-left: auto;
 }
 
+/* Part labels — major divisions of the article. Sit above the first section H2 of each part. */
+.article-part-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 96px !important;
+    margin-bottom: 36px !important;
+    padding-top: 28px;
+    border-top: 1px solid var(--text);
+    line-height: 1.3 !important;
+    font-size: inherit !important;
+}
+
+.article-part-label .article-part-num {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--text-muted);
+}
+
+.article-part-label .article-part-name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+/* The first part label opens the article — slightly less top spacing */
+section:first-of-type .article-part-label {
+    margin-top: 48px !important;
+}
+
+/* Case meta — anonymized project descriptor under each case section H2 */
+.article-case-meta {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: var(--text-muted);
+    margin-top: -16px;
+    margin-bottom: 28px !important;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    max-width: 800px;
+}
+
+/* Article figures (inline SVG diagrams or PDF-extracted images) */
+.article-figure {
+    max-width: 800px;
+    margin: 40px 0;
+}
+
+.article-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--text);
+    overflow: visible;
+}
+
+.article-figure figcaption {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-top: 14px;
+    font-style: italic;
+    max-width: 720px;
+}
+
+/* Case study callout — frames a real-project illustration of the surrounding text */
+.article-case {
+    max-width: 800px;
+    margin: 40px 0;
+    padding: 28px 32px 24px;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.018);
+}
+
+.article-case-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.article-case-title {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.article-case-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin: 0 0 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.article-case-stat {
+    flex: 0 1 auto;
+}
+
+.article-case-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.article-case-stat-value {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.2;
+    font-feature-settings: 'tnum' 1;
+}
+
+.article-case p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 12px !important;
+}
+
+.article-case p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.article-case .article-figure {
+    margin: 8px 0 20px;
+}
+
+.article-case .article-figure figcaption {
+    font-size: 11px;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .research-header,
@@ -1119,5 +1293,17 @@ button:focus-visible {
 
     .article-body h2 {
         margin-top: 48px;
+    }
+
+    .article-case {
+        padding: 22px 22px 20px;
+    }
+
+    .article-case-stats {
+        gap: 20px;
+    }
+
+    .article-case-stat-value {
+        font-size: 19px;
     }
 }
