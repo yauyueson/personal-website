@@ -1,1 +1,9 @@
 .vercel
+.DS_Store
+**/.DS_Store
+personal-website resources-unedited/
+test-results/
+.agents/
+.claude/
+lighthouse-*.json
+skills-lock.json
