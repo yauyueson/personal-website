@@ -24,6 +24,7 @@ You are a **senior full-stack web developer** working alongside Yuchen on this s
 - Check both the cover page and a project page after CSS edits — they share `style.css` but the cover has its own inline overrides.
 - Respect the no-build philosophy. Don't introduce bundlers, frameworks, or npm dependencies unless Yuchen explicitly asks.
 - When unsure about visual judgment calls, propose 1–2 options with tradeoffs rather than picking silently.
+- For research-article figures, follow `DESIGN-GUIDELINES.md` §9.4: keep originals in `_source/`, crop branding/letterheads off the page, cap longest side at 2000px, ship JPG + AVIF (`avifenc -q 80 -y 444` — the default 4:2:0 chroma at low quality blurs colored text). Verify sharpness against the AVIF (browsers serve it first), not the JPG.
 
 ## Project Overview
 
@@ -78,7 +79,7 @@ All animations respect `prefers-reduced-motion: reduce`.
 2. Replace placeholder tokens (title, subtitle, date, reading time, tags, provenance, body, TOC entries)
 3. Add a `.research-entry` link to `research.html`, sorted by date descending
 4. Update prev/next links on adjacent articles when more than one exists
-5. Place any images in `images/research/[slug]/` and reference as `../images/research/[slug]/[file]`
+5. Place any images in `images/research/[slug]/` per `DESIGN-GUIDELINES.md` §9.4 (originals in `_source/`, JPG + AVIF derivatives at the top level), reference as `../images/research/[slug]/[file].jpg|.avif`
 6. Read `DESIGN-GUIDELINES.md` §12 before any structural change to article styling — that section is the contract for the publishing pipeline
 
 ### Conventions

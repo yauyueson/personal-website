@@ -14,26 +14,30 @@ Deploy to Vercel and access via `[your-project-name].vercel.app`
 
 ```
 portfolio-site/
-├── index.html              # Homepage with project grid + about section
-├── style.css               # All styles
+├── index.html              # Cover page — embossed logo + auto-rotating slideshow
+├── home.html               # Main portfolio — project grid, about, contact
+├── research.html           # Research index — long-form articles (reverse-chrono)
+├── style.css               # Shared stylesheet (cover overrides inline in index.html)
+├── animations.js           # GSAP + ScrollTrigger engine (home, project, research)
 ├── images/
-│   ├── [project].jpg       # 7 thumbnail images (1200x750px)
-│   ├── spira-silva/        # 11 images
-│   ├── the-ripple/         # 10 images
-│   ├── the-loop/           # 8 images
-│   ├── motion/             # 5 images
-│   ├── the-third-space/    # 5 images
-│   ├── intertwine/         # 9 images
-│   └── school-of-methodology/  # 6 images
-└── projects/
-    ├── spira-silva.html
-    ├── the-ripple.html
-    ├── the-loop.html
-    ├── motion.html
-    ├── the-third-space.html
-    ├── intertwine.html
-    └── school-of-methodology.html
+│   ├── [project].jpg       # Project thumbnails (16:10)
+│   ├── cover/              # Cover slideshow images
+│   ├── [project-name]/     # One folder per project
+│   └── research/[slug]/    # Article figures — AVIF + JPG, originals in _source/
+├── projects/
+│   ├── spira-silva.html
+│   ├── the-ripple.html
+│   ├── the-loop.html
+│   ├── motion.html
+│   ├── the-third-space.html
+│   ├── intertwine.html
+│   └── school-of-methodology.html
+└── research/
+    ├── _template.html              # Article skeleton (do not link)
+    └── performance-informed-design.html
 ```
+
+`index.html` runs its own inline animation script for the cover transition. Every other page loads `animations.js`. Detailed conventions live in `DESIGN-GUIDELINES.md` (and §12 specifically covers the research / article system).
 
 ---
 
@@ -78,21 +82,28 @@ portfolio-site/
 
 ## Customization
 
-### Add New Project
+### Add a New Project
 
-1. Create thumbnail (1200x750px) → `images/[project-name].jpg`
+1. Create thumbnail → `images/[project-name].jpg` (displayed at 16:10)
 2. Create image folder → `images/[project-name]/`
-3. Create HTML page → `projects/[project-name].html`
-4. Add project card to `index.html`
+3. Create HTML page → `projects/[project-name].html` (copy an existing page as template)
+4. Add a `.project-item[data-reveal]` card to `home.html`
+5. Update prev/next nav links on adjacent project pages
+
+### Add a New Research Article
+
+1. Copy `research/_template.html` → `research/[slug].html`, replace tokens (title, date, meta, body, TOC)
+2. Add a `.research-entry` link to `research.html`, sorted by date descending
+3. Place article images in `images/research/[slug]/` per `DESIGN-GUIDELINES.md` §9.4 — keep originals in `_source/`, ship JPG + AVIF, cap longest side at 2000px
+4. Update prev/next links on adjacent articles when more than one exists
 
 ### Update Styles
 
-All styles in single `style.css` file:
-- `.project-images` — image container (max-width: 1000px)
-- `.image-text` — inline text blocks
-- `.image-grid` — 2-column image layout
-- `.project-header` — project page header
-- `.about` — about section on homepage
+All styles in `style.css` (cover overrides are inline in `index.html`):
+- `.project-images`, `.image-full`, `.image-grid`, `.image-text` — project page layouts
+- `.project-header`, `.about` — project page header / home about section
+- `.article-header`, `.article-toc`, `.article-body`, `.article-figure`, `.table-wrap` — research articles
+- CSS custom properties on `:root` — `--bg`, `--text`, `--text-muted`, `--border`, `--font-serif`, `--font-sans`
 
 ---
 

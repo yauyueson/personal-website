@@ -363,6 +363,31 @@ All animations check `prefers-reduced-motion: reduce`. When enabled:
 - `will-change: transform` on animated image containers
 - Preload: cover hero image and GSAP script
 
+### 9.4 Article figure images (research)
+
+Research-article figures live at `images/research/[slug]/` and ship as a `<picture>` with AVIF first, JPG fallback second. Pipeline:
+
+1. **Keep the upload** in `images/research/[slug]/_source/[file].[ext]` for reproducibility — never overwrite. The published `.jpg` / `.avif` are derived from this source.
+2. **Crop the page** to the actual diagram region. Drop date headers, page-number footers, branding/letterheads (Perkins-Eastman, project codenames, page-x-of-y), and dead whitespace before encoding. Aim for the figure to read as a figure, not a screenshot of a slide.
+3. **Resize so the longest side is ≤ 2000px.** That caps file size and stays sharp at 2× the 800px article column on Retina. Going past 2000 also hits the upload limit on some image-processing paths.
+4. **Re-encode both formats**:
+   - JPG fallback: `sips -s format jpeg -s formatOptions 88` (or 92 for tighter content)
+   - AVIF: `avifenc -q 80 -y 444` — **do not use the default 4:2:0 chroma at low qcolor** for diagrams. Red/blue text and thin colored labels go visibly soft; the JPG fallback hides this from a local check because browsers serve AVIF first.
+5. **Mirror the cropped pixel dimensions** in `<img width>` / `<img height>` so the article reserves the right aspect ratio under the global `width:100%; height:auto` rule. The numbers are layout hints, not display sizes.
+
+Markup pattern (always wrap in `<picture>`, AVIF first):
+
+```html
+<picture>
+  <source srcset="../images/research/[slug]/[file].avif" type="image/avif">
+  <img src="../images/research/[slug]/[file].jpg"
+       alt="..." loading="lazy" decoding="async"
+       width="W" height="H">
+</picture>
+```
+
+When a crop or re-encode lands, hard-refresh in the browser — old AVIFs in cache will mask the change.
+
 ---
 
 ## 10. File Structure
@@ -477,7 +502,7 @@ Articles live one directory deeper than home, so all asset references use `../`:
 - Logo: `../images/mark-light.svg`
 - Article images: `../images/research/[slug]/[file]`
 
-Article-specific images live in `images/research/[slug]/`. Reserve the folder when you create the article, even if no images at launch.
+Article-specific images live in `images/research/[slug]/`. Reserve the folder when you create the article, even if no images at launch. For figure images (cropping, AVIF/JPG encoding, sizing, markup), follow §9.4 — that is the contract for everything published under `images/research/`.
 
 ### Adding an article
 
@@ -485,5 +510,5 @@ Article-specific images live in `images/research/[slug]/`. Reserve the folder wh
 2. Replace placeholder tokens (title, date, meta, provenance, body, TOC entries)
 3. Add a `.research-entry` link to `research.html`, sorted by date descending
 4. Update prev/next links on adjacent articles (when more than one exists)
-5. Place any images in `images/research/[slug]/`
-6. Verify: nav has `Research` highlighted, TOC anchors land below the fixed header, tables scroll on mobile, reveals fire on sections (not paragraphs)
+5. Place any images in `images/research/[slug]/` per §9.4 (originals in `_source/`, cropped + encoded JPG/AVIF at the top level)
+6. Verify: nav has `Research` highlighted, TOC anchors land below the fixed header, tables scroll on mobile, reveals fire on sections (not paragraphs), figure images are sharp under AVIF (not just JPG)
