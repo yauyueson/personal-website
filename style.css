@@ -480,6 +480,20 @@ footer {
     display: block;
 }
 
+.project-images figure {
+    margin: 0;
+}
+
+.project-images figcaption {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-style: italic;
+    padding-top: 12px;
+    max-width: 720px;
+}
+
 .project-images .image-full {
     width: 100%;
 }
