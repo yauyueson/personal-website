@@ -434,6 +434,17 @@ footer {
     font-size: 14px;
 }
 
+.project-detail-value a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+.project-detail-value a:hover {
+    color: var(--text-muted);
+}
+
 /* Project Content */
 .project-content {
     padding: 0 40px 80px;
@@ -478,6 +489,26 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     align-items: start;
+}
+
+/* Editorial pairing: text on the left, vertically stacked images on the right */
+.project-images .text-with-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.project-images .text-with-stack .image-text {
+    padding-top: 0;
+    position: sticky;
+    top: 120px;
+}
+
+.project-images .image-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Inline text blocks between images */
@@ -540,6 +571,15 @@ footer {
 
     .project-images .image-grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-images .text-with-stack {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-images .text-with-stack .image-text {
+        position: static;
     }
 }
 
