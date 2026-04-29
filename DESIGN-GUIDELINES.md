@@ -287,9 +287,10 @@ Per-edge directional lighting simulating raised letterpress:
 
 ### 8.1 Library
 
-- GSAP 3.12.7 via CDN
-- Plugin: ScrollTrigger
+- GSAP 3.12.7 + ScrollTrigger, **self-hosted** at `vendor/gsap/`
 - Loaded on all pages; `animations.js` is the shared engine
+- Same-origin so the GSAP request piggybacks on the existing HTTP/2 connection — no third-party DNS handshake, no jsdelivr cache miss
+- To upgrade: download fresh `gsap.min.js` + `ScrollTrigger.min.js` into `vendor/gsap/`, do not add a CDN ref back
 
 ### 8.2 Easing Reference
 
@@ -418,17 +419,17 @@ When a crop or re-encode lands, hard-refresh in the browser — old AVIFs in cac
 ### 10.1 Script Loading Order
 
 ```html
-<!-- GSAP core (all pages) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<!-- GSAP core (all pages) — self-hosted -->
+<script src="vendor/gsap/gsap.min.js" defer></script>
 
-<!-- ScrollTrigger (home + project pages) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<!-- ScrollTrigger (home + project + research pages) -->
+<script src="vendor/gsap/ScrollTrigger.min.js" defer></script>
 
-<!-- Shared animations (home + project pages) -->
-<script src="animations.js"></script>
+<!-- Shared animations (home + project + research pages) -->
+<script src="animations.js" defer></script>
 ```
 
-Cover page (`index.html`) has its own inline `<script>` — it does not load `animations.js`.
+Project and research pages live one directory deeper, so use `../vendor/gsap/...` and `../animations.js` instead. Cover page (`index.html`) has its own inline `<script>` — it does not load `animations.js`.
 
 ---
 

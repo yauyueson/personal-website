@@ -19,6 +19,7 @@ portfolio-site/
 ├── research.html           # Research index — long-form articles (reverse-chrono)
 ├── style.css               # Shared stylesheet (cover overrides inline in index.html)
 ├── animations.js           # GSAP + ScrollTrigger engine (home, project, research)
+├── vendor/gsap/            # Self-hosted GSAP 3.12.7 + ScrollTrigger
 ├── images/
 │   ├── [project].jpg       # Project thumbnails (16:10)
 │   ├── cover/              # Cover slideshow images

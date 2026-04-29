@@ -61,7 +61,9 @@ No build, lint, or test commands exist.
 
 ### Animation System
 
-GSAP 3.12.7 loaded via CDN on all pages. `animations.js` provides: scroll-reveal (fade-up via `[data-reveal]` attribute), clip-path image wipes, word-stagger hero text, project header cascade, smart header hide/show, and image parallax. Cover page has separate inline animations for entrance/exit transitions.
+GSAP 3.12.7 + ScrollTrigger are vendored at `vendor/gsap/`, served from the same origin as the rest of the site (no third-party CDN, no extra DNS handshake). `animations.js` provides: scroll-reveal (fade-up via `[data-reveal]` attribute), clip-path image wipes, word-stagger hero text, project header cascade, smart header hide/show, and image parallax. Cover page has separate inline animations for entrance/exit transitions.
+
+When upgrading GSAP, replace both files in `vendor/gsap/` (don't add CDN refs back).
 
 All animations respect `prefers-reduced-motion: reduce`.
 
