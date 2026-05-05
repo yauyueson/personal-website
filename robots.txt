@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /research/_template.html
+
+Sitemap: https://yuchenqiu.com/sitemap.xml
