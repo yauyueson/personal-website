@@ -1,4 +1,6 @@
 {
+  "trailingSlash": false,
+  "cleanUrls": false,
   "headers": [
     {
       "source": "/:path*",
@@ -56,6 +58,11 @@
         { "type": "host", "value": "www.yuchenqiu.com" }
       ],
       "destination": "https://yuchenqiu.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
