@@ -450,11 +450,11 @@ The Research section (`/research.html` index + `/research/[slug].html` articles)
 
 Articles are wrapped in `<article>`, with these top-level containers (in order):
 
-1. `.article-header` — back-link, meta row (date · reading time · tags), `<h1>`, `.article-subtitle`, `.article-provenance`
+1. `.article-header` — back-link, meta row (date · reading time · tags), `<h1>`, `.article-subtitle`, `.article-byline`, `.article-provenance`
 2. `.article-toc` — bordered top + bottom, two-column on desktop, single-column on mobile, numbered with `decimal-leading-zero`
 3. `.article-body` — sectioned by `<h2 id="slug">`, optional `<h3>`, prose / lists / tables / blockquotes
 4. `.article-footnotes` — numeric `<ol>`, in-text refs use `<sup><a href="#fn-1">1</a></sup>`
-5. `.article-acknowledgments` — small italic block. **Co-authors and source attribution belong here, not in the byline.**
+5. `.article-acknowledgments` — small italic block. **Co-authors and source attribution belong here, not in `.article-byline` (which is reserved for the primary author).**
 6. `.article-nav` — back to research / next article
 
 ### Typography (article-specific)
@@ -463,6 +463,7 @@ Articles are wrapped in `<article>`, with these top-level containers (in order):
 |---|---|
 | Article `h1` | serif, `clamp(32px, 5vw, 44px)`, weight 400, line-height 1.2 (matches project h1) |
 | `.article-subtitle` | serif italic, 18px, muted, line-height 1.5 |
+| `.article-byline` | uppercase 11px, 0.14em tracking, full text colour, prefixed by muted `By ` via `::before` |
 | `.article-provenance` | italic 14px, left-bordered, muted — load-bearing context note |
 | `.article-meta` | uppercase 10px, 0.12em letter-spacing, separated by `·` middle dot |
 | `.article-body p` | 16px / 450 weight / line-height 1.8, max-width 800px |
