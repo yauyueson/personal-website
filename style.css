@@ -1376,3 +1376,103 @@ section:first-of-type .article-part-label {
         font-size: 19px;
     }
 }
+
+/* ==================== */
+/* PRINT                */
+/* ==================== */
+/* GSAP/ScrollTrigger leaves off-screen [data-reveal] elements at opacity:0 and a
+   translateY transform until the user scrolls past them. When printing, only the
+   currently-visible section has been revealed, so subsequent pages render blank.
+   This block forces all reveal targets to their final state and trims chrome that
+   doesn't belong on paper. */
+@media print {
+    /* Override GSAP inline styles + the .js [data-reveal] pre-hide rule */
+    [data-reveal],
+    .js [data-reveal],
+    .article-header,
+    .article-toc,
+    .article-body,
+    .article-body section,
+    .hero-h1 .word,
+    .image-full img,
+    .image-grid img,
+    .project-header *,
+    .project-nav,
+    .back-link {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        -webkit-clip-path: none !important;
+        visibility: visible !important;
+        filter: none !important;
+    }
+
+    /* Hide the fixed header — it overlaps printed text and clutters the page */
+    body > header,
+    .scroll-indicator {
+        display: none !important;
+    }
+
+    /* Drop the grain overlay; saves ink and avoids weird AA artefacts */
+    body::after,
+    body::before {
+        display: none !important;
+    }
+
+    /* Remove fixed/sticky positioning so content flows naturally across pages */
+    *,
+    *::before,
+    *::after {
+        position: static !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    html, body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    /* Honour author backgrounds where set, but default to white paper */
+    body {
+        font-size: 11pt;
+        line-height: 1.55;
+    }
+
+    /* Sensible page margins; Chrome's print dialog can override */
+    @page {
+        margin: 18mm 16mm;
+    }
+
+    /* Avoid awkward breaks */
+    h1, h2, h3, h4 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    figure, img, table, pre, blockquote,
+    .image-full, .image-grid, .table-wrap,
+    .article-case, .article-pull {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Show link URLs after their text for paper readers */
+    .article-body a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #555;
+        word-break: break-all;
+    }
+
+    /* Don't print prev/next nav or page footer */
+    .article-nav,
+    body > footer {
+        display: none !important;
+    }
+}
