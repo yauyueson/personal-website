@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "A minimal, white-themed portfolio website showcasing architectural projects. Built with static HTML/CSS, ready for deployment on Vercel, Netlify, or any static hosting.",
+  "main": "animations.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yauyueson/personal-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yauyueson/personal-website/issues"
+  },
+  "homepage": "https://github.com/yauyueson/personal-website#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
